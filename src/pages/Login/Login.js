@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Prompt } from "react-router-dom";
+// import { Prompt } from "react-router-dom";
 import Swal from "sweetalert2";
 export default function Login(props) {
   const [userLogin, setUserLogin] = useState({
@@ -73,9 +73,9 @@ export default function Login(props) {
       <div className="form-group mt-3">
         <button className="btn btn-success">Login</button>
       </div>
-      <Prompt when={true} message={(location)=>{
+      {/* <Prompt when={true} message={(location)=>{
         return "Bạn có chắc muốn rời khỏi trang này không?"
-      }}/>
+      }}/> */}
     </form>
   );
 }
