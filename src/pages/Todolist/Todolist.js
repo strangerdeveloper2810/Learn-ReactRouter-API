@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import "./Todolist.css";
 import axios from "axios";
+import Swal from "sweetalert2";
 export default class Todolist extends Component {
   state = {
     taskList: [],
+    values: {
+      taskName: "",
+    },
+    errors: {
+      taskName: "",
+    },
   };
 
   handleGetTaskList = () => {
@@ -64,55 +71,121 @@ export default class Todolist extends Component {
         </li>
       ));
   };
+
+  handleAddTask = (event) => {
+    event.preventDefault();
+    console.log(this.state.values.taskName);
+    let promise = axios({
+      url: "http://svcy.myclass.vn/api/ToDoList/AddTask",
+      method: "POST",
+      data: { taskName: this.state.values.taskName },
+    });
+
+    promise
+      .then((result) => {
+        Swal.fire({
+          icon: "success",
+          title: "success",
+          text: "Add task Success!",
+        });
+        this.handleGetTaskList();
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Task Name is already exist!",
+        });
+      });
+  };
+
+  handleChangeInput = (event) => {
+    let { name, value } = event.target;
+    let newValues = {
+      ...this.state.values,
+    };
+    newValues = { ...newValues, [name]: value };
+
+    let newErrors = { ...this.state.errors };
+
+    let regexString = /^[a-z A-Z 0-9]+$/;
+    if (!regexString.test(value) || value.trim() === "") {
+      newErrors[name] = name + " invalid !";
+    } else {
+      newErrors[name] = "";
+    }
+    this.setState({
+      ...this.state,
+      values: newValues,
+      errors: newErrors,
+    });
+  };
+
+  //   Hàm tự động thực thi sau khi nội dung component được render
+  componentDidMount() {
+    this.handleGetTaskList();
+  }
   render() {
     return (
-      <div>
-        <button
-          className="btn btn-info"
-          onClick={() => {
-            this.handleGetTaskList();
-          }}
-        >
-          Get TaskList
-        </button>
+      <form
+        onSubmit={(event) => {
+          this.handleAddTask(event);
+        }}
+      >
         <div className="card">
-          <h1 className="text-info  text-center">
+          <h1 className="text-info text-center">
             Todolist React Class Component
           </h1>
           <div className="card__header">
             <img src="./img/X2oObC4.png" alt="background" />
           </div>
-          {/* <h2>hello!</h2> */}
+
           <div className="card__body">
             <div className="card__content">
               <div className="card__title">
                 <h2>My Tasks</h2>
                 <p>September 9,2020</p>
               </div>
-              <div className="card__add">
-                <input
-                  id="newTask"
-                  type="text"
-                  placeholder="Enter an activity..."
-                />
-                <button id="addItem">
-                  <i className="fa fa-plus" />
-                </button>
+
+              <div className="form-group">
+                <div className="card__add">
+                  <input
+                    id="newTask"
+                    type="text"
+                    name="taskName"
+                    placeholder="Enter an activity..."
+                    onChange={(event) => {
+                      this.handleChangeInput(event);
+                    }}
+                  />
+                  <button
+                    id="addItem"
+                    onClick={() => {
+                      this.handleAddTask();
+                    }}
+                  >
+                    <i className="fa fa-plus" />
+                  </button>
+                </div>
+                <p className="text-danger">{this.state.errors.taskName}</p>
               </div>
-              <div className="card__todo">
-                {/* Uncompleted tasks */}
-                <ul className="todo" id="todo">
-                  {this.renderTaskToDo()}
-                </ul>
-                {/* Completed tasks */}
-                <ul className="todo" id="completed">
+
+              <div className="form-group">
+                <div className="card__todo">
+                  {/* Uncompleted tasks */}
+                  <ul className="todo" id="todo">
+                    {this.renderTaskToDo()}
+                  </ul>
+                  {/* Completed tasks */}
+                  <ul className="todo" id="completed">
                     {this.renderTaskCompleted()}
-                </ul>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </form>
     );
   }
 }
