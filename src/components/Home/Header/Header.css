@@ -1,0 +1,6 @@
+.activeNavItem {
+    color: rgba(255, 105, 98, 0.6);
+}
+.activeNavItem:hover {
+    color: chartreuse;
+}
