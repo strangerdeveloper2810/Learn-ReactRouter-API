@@ -41,12 +41,23 @@ export default class Todolist extends Component {
         <li key={index}>
           <span>{task.taskName}</span>
           <div className="buttons">
-            <button className="remove">
+            <button
+              type="button"
+              className="remove"
+              onClick={() => {
+                this.handleDeleteTask(task.taskName);
+              }}
+            >
               <i className="fa fa-trash-alt" />
             </button>
-            <button className="complete">
-              <i className="far fa-check-circle" />
-              <i className="fas fa-check-circle" />
+            <button
+              className="complete"
+              type="button"
+              onClick={() => {
+                this.handleCheckTask(task.taskName);
+              }}
+            >
+              <i className="fa fa-check-circle" />
             </button>
           </div>
         </li>
@@ -60,12 +71,23 @@ export default class Todolist extends Component {
         <li key={index}>
           <span>{task.taskName}</span>
           <div className="buttons">
-            <button className="remove">
+            <button
+              type="button"
+              className="remove"
+              onClick={() => {
+                this.handleDeleteTask(task.taskName);
+              }}
+            >
               <i className="fa fa-trash-alt" />
             </button>
-            <button className="complete">
-              <i className="far fa-check-circle" />
-              <i className="fas fa-check-circle" />
+            <button
+              className="complete"
+              type="button"
+              onClick={() => {
+                this.handleRejectTask(task.taskName);
+              }}
+            >
+              <i className="fa fa-undo" />
             </button>
           </div>
         </li>
@@ -73,7 +95,6 @@ export default class Todolist extends Component {
   };
 
   handleAddTask = (event) => {
-    event.preventDefault();
     console.log(this.state.values.taskName);
     let promise = axios({
       url: "http://svcy.myclass.vn/api/ToDoList/AddTask",
@@ -95,6 +116,75 @@ export default class Todolist extends Component {
           icon: "error",
           title: "Oops...",
           text: "Task Name is already exist!",
+        });
+      });
+  };
+
+  handleDeleteTask = (taskName) => {
+    let promise = axios({
+      url: `http://svcy.myclass.vn/api/ToDoList/deleteTask?taskName=${taskName}`,
+      method: "DELETE",
+    });
+    promise
+      .then((result) => {
+        Swal.fire({
+          icon: "success",
+          title: "success",
+          text: "Delete task Success!",
+        });
+        this.handleGetTaskList();
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      });
+  };
+
+  handleCheckTask = (taskName) => {
+    let promise = axios({
+      url: `http://svcy.myclass.vn/api/ToDoList/doneTask?taskName=${taskName}`,
+      method: "PUT",
+    });
+    promise
+      .then((result) => {
+        Swal.fire({
+          icon: "success",
+          title: "success",
+          text: "Updated task Success!",
+        });
+        this.handleGetTaskList();
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "Error",
+          title: "Opps",
+          text: "Something went wrong!",
+        });
+      });
+  };
+
+  handleRejectTask = (taskName) => {
+    let promise = axios({
+      url: `http://svcy.myclass.vn/api/ToDoList/rejectTask?taskName=${taskName}`,
+      method: "PUT",
+    });
+    promise
+      .then((result) => {
+        Swal.fire({
+          icon: "success",
+          title: "success",
+          text: "Reject task Success!",
+        });
+        this.handleGetTaskList();
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "Error",
+          title: "Opps",
+          text: "Something went wrong!",
         });
       });
   };
@@ -127,11 +217,7 @@ export default class Todolist extends Component {
   }
   render() {
     return (
-      <form
-        onSubmit={(event) => {
-          this.handleAddTask(event);
-        }}
-      >
+      <div>
         <div className="card">
           <h1 className="text-info text-center">
             Todolist React Class Component
@@ -160,6 +246,7 @@ export default class Todolist extends Component {
                   />
                   <button
                     id="addItem"
+                    type="button"
                     onClick={() => {
                       this.handleAddTask();
                     }}
@@ -185,7 +272,7 @@ export default class Todolist extends Component {
             </div>
           </div>
         </div>
-      </form>
+      </div>
     );
   }
 }
