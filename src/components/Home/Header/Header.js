@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./Header.css";
 export default function Header() {
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-info bg-gradient">
+    <nav className="navbar navbar-expand-sm navbar-dark bg-dark bg-gradient">
       <NavLink className="navbar-brand" to="/">
         Stranger
       </NavLink>
@@ -75,6 +75,38 @@ export default function Header() {
             >
               Profile
             </NavLink>
+          </li>
+
+          <li className="nav-item dropdown">
+            <span
+              className="nav-link dropdown-toggle"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Bài Tập
+            </span>
+            <ul className="dropdown-menu">
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link dropdown-item text-info"
+                  to="/todolistrcc"
+                  activeClassName="activeNavItem"
+                >
+                  Todolist Class Component
+                </NavLink>
+              </li>
+
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link dropdown-item text-info"
+                  to="/todolistrfc"
+                  activeClassName="activeNavItem"
+                >
+                  Todolist Functional Component
+                </NavLink>
+              </li>
+            </ul>
           </li>
         </ul>
         <form className="d-flex my-2 my-lg-0">
