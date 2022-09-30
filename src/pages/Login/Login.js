@@ -27,14 +27,16 @@ export default function Login(props) {
         text: "Login Success!",
       });
       // Thành công thì chuyển về trang trước đó
-    //   props.history.goBack();
+        props.history.goBack();
 
-    // Chuyển về trang chỉ định sau khi xử lý
-    // Chuyển hướng đên path tương ứng
-    props.history.push("/home");
+      // Chuyển về trang chỉ định sau khi xử lý
+      // Chuyển hướng đên path tương ứng
+      // props.history.push("/home");
 
-    // Replace thay đổi nội dung path tương ứng
-    // props.history.replace("/home");
+      localStorage.setItem("userLogin", JSON.stringify(userLogin));
+
+      // Replace thay đổi nội dung path tương ứng
+      // props.history.replace("/home");
     } else {
       Swal.fire({
         icon: "error",

@@ -66,6 +66,16 @@ export default function Header() {
               Detail
             </NavLink>
           </li>
+
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to="/profile"
+              activeClassName="activeNavItem"
+            >
+              Profile
+            </NavLink>
+          </li>
         </ul>
         <form className="d-flex my-2 my-lg-0">
           <input
