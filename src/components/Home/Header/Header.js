@@ -46,6 +46,16 @@ export default function Header() {
               Contact
             </NavLink>
           </li>
+
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to="/login"
+              activeClassName="activeNavItem"
+            >
+              Login
+            </NavLink>
+          </li>
         </ul>
         <form className="d-flex my-2 my-lg-0">
           <input
