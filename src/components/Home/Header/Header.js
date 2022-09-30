@@ -56,6 +56,16 @@ export default function Header() {
               Login
             </NavLink>
           </li>
+
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to="/detail"
+              activeClassName="activeNavItem"
+            >
+              Detail
+            </NavLink>
+          </li>
         </ul>
         <form className="d-flex my-2 my-lg-0">
           <input
