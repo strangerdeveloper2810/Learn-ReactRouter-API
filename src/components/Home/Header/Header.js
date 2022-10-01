@@ -106,6 +106,16 @@ export default function Header() {
                   Todolist Functional Component
                 </NavLink>
               </li>
+
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link dropdown-item text-info"
+                  to="/todolistredux"
+                  activeClassName="activeNavItem"
+                >
+                  Todolist Redux 
+                </NavLink>
+              </li>
             </ul>
           </li>
         </ul>
