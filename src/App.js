@@ -8,6 +8,7 @@ import Login from "./pages/Login/Login";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Profile from "./pages/Profile/Profile";
 import Todolist from "./pages/Todolist/Todolist";
+import TodolistRedux from "./pages/Todolist/TodolistRedux";
 import TodolistRFC from "./pages/Todolist/TodolistRFC";
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/detail/:id" component={Detail}/>
         <Route exact path="/todolistrcc" component={Todolist}/>
         <Route exact path="/todolistrfc" component={TodolistRFC}/>
+        <Route exact path="/todolistredux" component={TodolistRedux} />
         <Route path="*" component={PageNotFound}/>
       </Switch>
     </BrowserRouter>

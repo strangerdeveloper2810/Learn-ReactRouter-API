@@ -1,10 +1,16 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Swal from "sweetalert2";
+
 import "./Todolist.css";
-export default function TodolistRFC(props) {
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addTaskApi,
+  checkTaskApi,
+  deleteTaskApi,
+  getTaskListApi,
+  rejectTaskApi,
+} from "../../redux/actions/TodolistAction";
+export default function TodolistRedux(props) {
   let [state, setState] = useState({
-    taskList: [],
     values: {
       taskName: "",
     },
@@ -12,6 +18,9 @@ export default function TodolistRFC(props) {
       taskName: "",
     },
   });
+
+  const dispatch = useDispatch();
+  let { taskList } = useSelector((state) => state.TodolistReducer);
 
   const handleChangeInput = (event) => {
     let { name, value } = event.target;
@@ -37,25 +46,7 @@ export default function TodolistRFC(props) {
   };
 
   const handleGetTaskList = () => {
-    let promise = axios({
-      url: "http://svcy.myclass.vn/api/ToDoList/GetAllTask",
-      method: "GET",
-    });
-
-    promise.then((result) => {
-      console.log("Success");
-      console.log("data", result.data);
-      //   Nếu gọi API lấy về kết quả thành công
-      //  => set lại state của component
-      setState({
-        ...state,
-        taskList: result.data,
-      });
-    });
-    promise.catch((error) => {
-      console.log("Fail!");
-      console.log(error.response.data);
-    });
+    dispatch(getTaskListApi());
   };
 
   useEffect(() => {
@@ -64,7 +55,7 @@ export default function TodolistRFC(props) {
   }, []);
 
   const renderTaskToDo = () => {
-    return state.taskList
+    return taskList
       .filter((item) => item.status === false)
       .map((task, index) => (
         <li key={index}>
@@ -94,7 +85,7 @@ export default function TodolistRFC(props) {
   };
 
   const renderTaskCompleted = () => {
-    return state.taskList
+    return taskList
       .filter((item) => item.status)
       .map((task, index) => (
         <li key={index}>
@@ -125,97 +116,21 @@ export default function TodolistRFC(props) {
 
   const handleAddTask = (event) => {
     event.preventDefault();
-    let promise = axios({
-      url: "http://svcy.myclass.vn/api/ToDoList/AddTask",
-      method: "POST",
-      data: { taskName: state.values.taskName },
-    });
 
-    promise
-      .then((result) => {
-        Swal.fire({
-          icon: "success",
-          title: "success",
-          text: "Add task Success!",
-        });
-        handleGetTaskList();
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Task Name is already exist!",
-        });
-      });
+    // Xử lý nhận dữ liệu từ người dùng nhập => gọi action addTaskApi()
+    dispatch(addTaskApi(state.values.taskName));
   };
 
   const handleDeleteTask = (taskName) => {
-    let promise = axios({
-      url: `http://svcy.myclass.vn/api/ToDoList/deleteTask?taskName=${taskName}`,
-      method: "DELETE",
-    });
-    promise
-      .then((result) => {
-        Swal.fire({
-          icon: "success",
-          title: "success",
-          text: "Delete task Success!",
-        });
-        handleGetTaskList();
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-        });
-      });
+    dispatch(deleteTaskApi(taskName));
   };
 
   const handleCheckTask = (taskName) => {
-    let promise = axios({
-      url: `http://svcy.myclass.vn/api/ToDoList/doneTask?taskName=${taskName}`,
-      method: "PUT",
-    });
-    promise
-      .then((result) => {
-        Swal.fire({
-          icon: "success",
-          title: "success",
-          text: "Updated task Success!",
-        });
-        handleGetTaskList();
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: "Error",
-          title: "Opps",
-          text: "Something went wrong!",
-        });
-      });
+    dispatch(checkTaskApi(taskName));
   };
 
   const handleRejectTask = (taskName) => {
-    let promise = axios({
-      url: `http://svcy.myclass.vn/api/ToDoList/rejectTask?taskName=${taskName}`,
-      method: "PUT",
-    });
-    promise
-      .then((result) => {
-        Swal.fire({
-          icon: "success",
-          title: "success",
-          text: "Reject task Success!",
-        });
-        handleGetTaskList();
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: "Error",
-          title: "Opps",
-          text: "Something went wrong!",
-        });
-      });
+    dispatch(rejectTaskApi(taskName));
   };
 
   return (
