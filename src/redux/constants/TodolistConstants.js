@@ -1,1 +1,3 @@
 export const GET_TASK_LIST_API = "GET_TASK_LIST_API";
+
+export const GET_TASK_API_ACTION = "GET_TASK_API_ACTION";
