@@ -1,9 +1,8 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import {useDispatch} from "react-redux"
-import "./TodolistSagaStyle.css";
+
+import { useDispatch, useSelector } from "react-redux";
 import { GET_TASK_API_ACTION } from "../../redux/constants/TodolistConstants";
+import "./TodolistSagaStyle.css";
 
 export default function TodolistSaga(props) {
   let [state, setState] = useState({
@@ -17,6 +16,8 @@ export default function TodolistSaga(props) {
   });
 
   const dispatch = useDispatch();
+
+  const { taskList } = useSelector((state) => state.TodolistReducer);
 
   const handleChangeInput = (event) => {
     let { name, value } = event.target;
@@ -41,17 +42,14 @@ export default function TodolistSaga(props) {
     });
   };
 
-  const handleGetTaskList = () => {
-    
-  };
+  const handleGetTaskList = () => {};
 
   useEffect(() => {
-   
     return () => {};
   }, []);
 
   const renderTaskToDo = () => {
-    return state.taskList
+    return taskList
       .filter((item) => item.status === false)
       .map((task, index) => (
         <li key={index}>
@@ -61,7 +59,7 @@ export default function TodolistSaga(props) {
               className="remove"
               type="button"
               onClick={() => {
-               handleDeleteTask(task.taskName)
+                handleDeleteTask(task.taskName);
               }}
             >
               <i className="fa fa-trash-alt" />
@@ -81,7 +79,7 @@ export default function TodolistSaga(props) {
   };
 
   const renderTaskCompleted = () => {
-    return state.taskList
+    return taskList
       .filter((item) => item.status)
       .map((task, index) => (
         <li key={index}>
@@ -91,7 +89,7 @@ export default function TodolistSaga(props) {
               className="remove"
               type="button"
               onClick={() => {
-                handleDeleteTask(task.taskName)
+                handleDeleteTask(task.taskName);
               }}
             >
               <i className="fa fa-trash-alt" />
@@ -112,30 +110,21 @@ export default function TodolistSaga(props) {
 
   const handleAddTask = (event) => {
     event.preventDefault();
-   
   };
 
-  const handleDeleteTask = (taskName) => {
-   
-  };
+  const handleDeleteTask = (taskName) => {};
 
-  const handleCheckTask = (taskName) => {
-   
-  };
+  const handleCheckTask = (taskName) => {};
 
-  const handleRejectTask = (taskName) => {
-    
-  };
+  const handleRejectTask = (taskName) => {};
 
   return (
     <div className="card">
-      <h1 className="text-info  text-center">
-        Todolist Redux Saga
-      </h1>
+      <h1 className="text-info text-center">Todolist Redux Saga</h1>
       <button className="btn btn-success" onClick={()=>{
         dispatch({
-            type: GET_TASK_API_ACTION
-        });
+          type: GET_TASK_API_ACTION
+        })
       }}>Dispatch</button>
       <div className="card__header">
         <img src="./img/X2oObC4.png" alt="background" />

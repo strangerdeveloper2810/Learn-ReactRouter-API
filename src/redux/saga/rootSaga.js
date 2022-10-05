@@ -1,25 +1,39 @@
-import { fork, take } from "@redux-saga/core/effects";
-import { GET_TASK_API_ACTION } from "../constants/TodolistConstants";
+import {
+  fork,
+  take,
+  takeEvery,
+  takeLatest,
+  delay,
+  call,
+  put,
+} from "redux-saga/effects";
+import axios from "axios";
+import {
+  GET_TASK_API_ACTION,
+  GET_TASK_LIST_API,
+} from "../constants/TodolistConstants";
 /*
 Redux có 2 loại action: 
 Loại 1: action => object (action thường)
 Loại 2: action => function (thường dùng để xử lý api hoặc gọi các action khác)
 */
 
-function* getTaskApi() {
-  // theo dõi action => xem action nào dispatch mới làm các công việc bên dưới
-  // yield take(GET_TASK_API_ACTION);
-  // console.log("getTaskApi");
+function* getTaskApi(action) {
+  let { data, status } = yield call(() => {
+    return axios({
+      url: "http://svcy.myclass.vn/api/ToDoList/GetAllTask",
+      method: "GET",
+    });
+  });
 
-  while (true) {
-    yield take(GET_TASK_API_ACTION);
-    console.log("getTaskApi");
-    //   call api dispatch lên reducer...
-  }
+  // Sau khi lấy giá trị thành công dùng put (giống dispatch như redux-thunk)
 
+  yield put({
+    type: GET_TASK_LIST_API,
+    taskList: data,
+  });
 }
 
 export function* rootSaga() {
-    // None blocking chạy không cần chờ
-  yield fork(getTaskApi);
+  yield takeLatest(GET_TASK_API_ACTION, getTaskApi);
 }
