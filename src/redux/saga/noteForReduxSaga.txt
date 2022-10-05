@@ -1,0 +1,25 @@
+Redux có 2 loại action: 
+Loại 1: action => object (action thường)
+Loại 2: action => function (thường dùng để xử lý api hoặc gọi các action khác)
+
+
+theo dõi action => xem action nào dispatch mới làm các công việc bên dưới
+  yield take(GET_TASK_API_ACTION);
+  console.log("getTaskApi");
+
+    while (true) {
+      yield take(GET_TASK_API_ACTION);
+      console.log("getTaskApi");
+      call api dispatch lên reducer...
+    }
+  yield delay(3000);
+  console.log("getTaskApi", action);
+
+
+
+
+  None blocking chạy không cần chờ
+  yield fork(getTaskApi);
+  Click bao nhiều lần thì gọi bấy nhiêu lần action
+  yield takeEvery(GET_TASK_API_ACTION, getTaskApi);
+  Click bao nhiêu lần thì chỉ gọi thằng click cuối cùng, ví dụ click 10 lần thì 9 lần click thì sẽ bị hủy bỏ chỉ có thằng cuối cùng đc gọi
