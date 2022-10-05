@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { GET_TASK_API_ACTION } from "../../redux/constants/TodolistConstants";
+import { GET_TASK_API_ACTION_SAGA } from "../../redux/constants/TodolistConstants";
 import "./TodolistSagaStyle.css";
 
 export default function TodolistSaga(props) {
@@ -42,9 +42,14 @@ export default function TodolistSaga(props) {
     });
   };
 
-  const handleGetTaskList = () => {};
+  const handleGetTaskList = () => {
+    dispatch({
+      type: GET_TASK_API_ACTION_SAGA
+    });
+  };
 
   useEffect(() => {
+    handleGetTaskList();
     return () => {};
   }, []);
 
@@ -121,11 +126,6 @@ export default function TodolistSaga(props) {
   return (
     <div className="card">
       <h1 className="text-info text-center">Todolist Redux Saga</h1>
-      <button className="btn btn-success" onClick={()=>{
-        dispatch({
-          type: GET_TASK_API_ACTION
-        })
-      }}>Dispatch</button>
       <div className="card__header">
         <img src="./img/X2oObC4.png" alt="background" />
       </div>
