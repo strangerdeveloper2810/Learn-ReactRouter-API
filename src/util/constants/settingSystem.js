@@ -1,4 +1,4 @@
-export const DOMAIN = "http://svcy.myclass.vn/api";
+export const DOMAIN = "http://svcy.myclass.vn/api/ToDoList";
 
 export const STATUS_CODE = {
     SUCCESS: 200,

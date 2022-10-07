@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { GET_TASK_API_ACTION_SAGA } from "../../redux/constants/TodolistConstants";
+import { GET_TASK_API_ACTION_SAGA,ADD_TASK_API_ACTION_SAGA, DELETE_TASK_API_ACTION_SAGA, CHECK_TASK_API_ACTION_SAGA ,REJECT_TASK_API_ACTION_SAGA } from "../../redux/constants/TodolistConstants";
 import "./TodolistSagaStyle.css";
 
 export default function TodolistSaga(props) {
@@ -64,7 +64,7 @@ export default function TodolistSaga(props) {
               className="remove"
               type="button"
               onClick={() => {
-                handleDeleteTask(task.taskName);
+                handleDeleteTask(task.taskName)
               }}
             >
               <i className="fa fa-trash-alt" />
@@ -73,7 +73,7 @@ export default function TodolistSaga(props) {
               className="complete"
               type="button"
               onClick={() => {
-                handleCheckTask(task.taskName);
+                
               }}
             >
               <i className="fa fa-check-circle" />
@@ -94,7 +94,7 @@ export default function TodolistSaga(props) {
               className="remove"
               type="button"
               onClick={() => {
-                handleDeleteTask(task.taskName);
+                handleDeleteTask(task.taskName)
               }}
             >
               <i className="fa fa-trash-alt" />
@@ -103,7 +103,7 @@ export default function TodolistSaga(props) {
               className="complete"
               type="button"
               onClick={() => {
-                handleRejectTask(task.taskName);
+               
               }}
             >
               <i className="fa fa-undo" />
@@ -115,9 +115,18 @@ export default function TodolistSaga(props) {
 
   const handleAddTask = (event) => {
     event.preventDefault();
-  };
+    dispatch({
+      type: ADD_TASK_API_ACTION_SAGA,
+      taskName: state.values.taskName
+    });
+  }
 
-  const handleDeleteTask = (taskName) => {};
+  const handleDeleteTask = (taskName) => {
+    dispatch({
+      type: DELETE_TASK_API_ACTION_SAGA,
+      taskName: taskName
+    });
+  };
 
   const handleCheckTask = (taskName) => {};
 
