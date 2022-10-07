@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
   
 });
 
-const store = createStore(rootReducer, applyMiddleware(thunk, sagaMiddleware));
+const store = createStore(rootReducer, applyMiddleware(thunk,sagaMiddleware));
 
 // gọi saga
 sagaMiddleware.run(rootSaga);

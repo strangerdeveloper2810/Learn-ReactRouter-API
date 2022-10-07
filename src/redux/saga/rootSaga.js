@@ -1,9 +1,8 @@
-import { all } from "redux-saga/effects";
-import * as TDLSagaAction from "./TodolistSagaActions"; 
-export function* rootSaga() {
-  yield all([
-    TDLSagaAction.actionGetTaskApi(),
-    TDLSagaAction.actionAddTaskApi(),
-    TDLSagaAction.actionDeleteTaskApi(),
-  ]);
+import * as TDLSagaAction from "./TodolistSagaAction";
+import {all} from "redux-saga/effects"
+export function * rootSaga() {
+    yield all([
+        TDLSagaAction.actionGetTaskApi(),
+        TDLSagaAction.actionAddTaskApi(),
+    ]);
 }

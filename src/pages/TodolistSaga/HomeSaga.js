@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-
-import { useDispatch, useSelector } from "react-redux";
-import { GET_TASK_API_ACTION_SAGA,ADD_TASK_API_ACTION_SAGA, DELETE_TASK_API_ACTION_SAGA, CHECK_TASK_API_ACTION_SAGA ,REJECT_TASK_API_ACTION_SAGA } from "../../redux/constants/TodolistConstants";
-import "./TodolistSagaStyle.css";
-
-export default function TodolistSaga(props) {
+import "./Home.css";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  GET_TASK_API_ACTION_SAGA,
+  ADD_TASK_API_ACTION_SAGA,
+} from "../../redux/constants/TodolistConstants";
+export default function HomeSaga(props) {
   let [state, setState] = useState({
-    taskList: [],
     values: {
       taskName: "",
     },
@@ -16,8 +16,7 @@ export default function TodolistSaga(props) {
   });
 
   const dispatch = useDispatch();
-
-  const { taskList } = useSelector((state) => state.TodolistReducer);
+  let { taskList } = useSelector((state) => state.TodolistReducer);
 
   const handleChangeInput = (event) => {
     let { name, value } = event.target;
@@ -44,13 +43,12 @@ export default function TodolistSaga(props) {
 
   const handleGetTaskList = () => {
     dispatch({
-      type: GET_TASK_API_ACTION_SAGA
+      type: GET_TASK_API_ACTION_SAGA,
     });
   };
 
   useEffect(() => {
     handleGetTaskList();
-    return () => {};
   }, []);
 
   const renderTaskToDo = () => {
@@ -64,7 +62,7 @@ export default function TodolistSaga(props) {
               className="remove"
               type="button"
               onClick={() => {
-                handleDeleteTask(task.taskName)
+                handleDeleteTask(task.taskName);
               }}
             >
               <i className="fa fa-trash-alt" />
@@ -73,7 +71,7 @@ export default function TodolistSaga(props) {
               className="complete"
               type="button"
               onClick={() => {
-                
+                handleCheckTask(task.taskName);
               }}
             >
               <i className="fa fa-check-circle" />
@@ -94,7 +92,7 @@ export default function TodolistSaga(props) {
               className="remove"
               type="button"
               onClick={() => {
-                handleDeleteTask(task.taskName)
+                handleDeleteTask(task.taskName);
               }}
             >
               <i className="fa fa-trash-alt" />
@@ -103,7 +101,7 @@ export default function TodolistSaga(props) {
               className="complete"
               type="button"
               onClick={() => {
-               
+                handleRejectTask(task.taskName);
               }}
             >
               <i className="fa fa-undo" />
@@ -117,16 +115,13 @@ export default function TodolistSaga(props) {
     event.preventDefault();
     dispatch({
       type: ADD_TASK_API_ACTION_SAGA,
-      taskName: state.values.taskName
+      taskName: state.values.taskName,
     });
-  }
 
-  const handleDeleteTask = (taskName) => {
-    dispatch({
-      type: DELETE_TASK_API_ACTION_SAGA,
-      taskName: taskName
-    });
+    // Xử lý nhận dữ liệu từ người dùng nhập => gọi action addTaskApi()
   };
+
+  const handleDeleteTask = (taskName) => {};
 
   const handleCheckTask = (taskName) => {};
 
@@ -134,7 +129,6 @@ export default function TodolistSaga(props) {
 
   return (
     <div className="card">
-      <h1 className="text-info text-center">Todolist Redux Saga</h1>
       <div className="card__header">
         <img src="./img/X2oObC4.png" alt="background" />
       </div>
@@ -162,13 +156,9 @@ export default function TodolistSaga(props) {
                   handleChangeInput(event);
                 }}
               />
-              <button
-                id="addItem"
-                type="button"
-                onClick={(event) => {
-                  handleAddTask(event);
-                }}
-              >
+              <button id="addItem" type="submit" onClick={(event)=>{
+                handleAddTask(event)
+              }}>
                 <i className="fa fa-plus" />
               </button>
             </div>
