@@ -1,8 +1,11 @@
-import { all } from "redux-saga/effects";
-import * as TodolistSaga from "./TodolistSagaActions"; 
-export function* rootSaga() {
-  yield all([
-    TodolistSaga.actionTodolistSaga(),
-    
-  ]);
+import * as TDLSagaAction from "./TodolistSagaAction";
+import {all} from "redux-saga/effects"
+export function * rootSaga() {
+    yield all([
+        TDLSagaAction.actionGetTaskApi(),
+        TDLSagaAction.actionAddTaskApi(),
+        TDLSagaAction.actionDeleteTask(),
+        TDLSagaAction.actionDoneTask(),
+        TDLSagaAction.actionRejectTask(),
+    ]);
 }

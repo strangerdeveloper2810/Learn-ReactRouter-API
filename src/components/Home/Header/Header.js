@@ -113,7 +113,7 @@ export default function Header() {
                   to="/todolistredux"
                   activeClassName="activeNavItem"
                 >
-                  Todolist Redux 
+                  Todolist Redux
                 </NavLink>
               </li>
 
@@ -123,7 +123,7 @@ export default function Header() {
                   to="/todolistsaga"
                   activeClassName="activeNavItem"
                 >
-                  Todolist Saga
+                  Todolist Redux-Saga
                 </NavLink>
               </li>
             </ul>
