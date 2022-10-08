@@ -1,7 +1,6 @@
 import axios from "axios";
 import { DOMAIN } from "../util/constants/systemSetting";
 export class TodolistServices {
-  // eslint-disable-next-line no-useless-constructor
   constructor() {}
 
   getTaskApi = () => {
