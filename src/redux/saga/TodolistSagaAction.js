@@ -3,6 +3,9 @@ import {
   GET_TASK_API_ACTION_SAGA,
   GET_TASK_LIST_API,
   ADD_TASK_API_ACTION_SAGA,
+  DELETE_TASK_API_ACTION_SAGA,
+  CHECK_TASK_API_ACTION_SAGA,
+  REJECT_TASK_API_ACTION_SAGA,
 } from "../constants/TodolistConstants";
 import { DISPLAY_LOADING, HIDE_LOADING } from "../constants/LoadingConstants";
 import { TDLServices } from "../../services/TodolistServices";
@@ -20,7 +23,6 @@ function* getTaskApi(action) {
         type: GET_TASK_LIST_API,
         taskList: data,
       });
-      console.log(data);
     } else {
       console.log("error");
     }
@@ -38,26 +40,91 @@ export function* actionGetTaskApi() {
 
 function* addTaskApi(action) {
   const { taskName } = action;
-  console.log(taskName);
 
   //Gọi api
-    try {
-      const { data, status } = yield call(() => {
-        return TDLServices.addTaskApi(taskName);
+  try {
+    const { status } = yield call(() => {
+      return TDLServices.addTaskApi(taskName);
+    });
+    if (status === STATUS__CODE.SUCCESS) {
+      yield put({
+        type: GET_TASK_API_ACTION_SAGA,
       });
-      if (status === STATUS__CODE.SUCCESS) {
-        yield put({
-          type: GET_TASK_API_ACTION_SAGA,
-        });
-
-      }
-    } catch (err) {
-      console.log(err);
     }
-
-  
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export function* actionAddTaskApi() {
   yield takeLatest(ADD_TASK_API_ACTION_SAGA, addTaskApi);
+}
+
+function* deleteTaskApi(action) {
+  const { taskName } = action;
+  try {
+    let { status } = yield call(() => {
+      return TDLServices.deleteTaskApi(taskName);
+    });
+
+    if (status === STATUS__CODE.SUCCESS) {
+      yield put({
+        type: GET_TASK_API_ACTION_SAGA,
+      });
+    } else {
+      console.log("error");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* actionDeleteTask() {
+  yield takeLatest(DELETE_TASK_API_ACTION_SAGA, deleteTaskApi);
+}
+
+function* doneTaskApi(action) {
+  const { taskName } = action;
+  try {
+    let { status } = yield call(() => {
+      return TDLServices.doneTaskApi(taskName);
+    });
+
+    if (status === STATUS__CODE.SUCCESS) {
+      yield put({
+        type: GET_TASK_API_ACTION_SAGA,
+      });
+    } else {
+      console.log("error");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* actionDoneTask() {
+  yield takeLatest(CHECK_TASK_API_ACTION_SAGA, doneTaskApi);
+}
+
+function* rejectTaskApi(action) {
+  const { taskName } = action;
+  try {
+    let { status } = yield call(() => {
+      return TDLServices.rejectTaskApi(taskName);
+    });
+
+    if (status === STATUS__CODE.SUCCESS) {
+      yield put({
+        type: GET_TASK_API_ACTION_SAGA,
+      });
+    } else {
+      console.log("error");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* actionRejectTask() {
+  yield takeLatest(REJECT_TASK_API_ACTION_SAGA, rejectTaskApi);
 }

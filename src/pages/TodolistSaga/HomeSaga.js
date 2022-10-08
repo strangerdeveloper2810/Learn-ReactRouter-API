@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   GET_TASK_API_ACTION_SAGA,
   ADD_TASK_API_ACTION_SAGA,
+  DELETE_TASK_API_ACTION_SAGA,
+  CHECK_TASK_API_ACTION_SAGA,
+  REJECT_TASK_API_ACTION_SAGA,
 } from "../../redux/constants/TodolistConstants";
 export default function HomeSaga(props) {
   let [state, setState] = useState({
@@ -49,6 +52,7 @@ export default function HomeSaga(props) {
 
   useEffect(() => {
     handleGetTaskList();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderTaskToDo = () => {
@@ -121,11 +125,26 @@ export default function HomeSaga(props) {
     // Xử lý nhận dữ liệu từ người dùng nhập => gọi action addTaskApi()
   };
 
-  const handleDeleteTask = (taskName) => {};
+  const handleDeleteTask = (taskName) => {
+    dispatch({
+      type: DELETE_TASK_API_ACTION_SAGA,
+      taskName,
+    });
+  };
 
-  const handleCheckTask = (taskName) => {};
+  const handleCheckTask = (taskName) => {
+    dispatch({
+      type: CHECK_TASK_API_ACTION_SAGA,
+      taskName,
+    });
+  };
 
-  const handleRejectTask = (taskName) => {};
+  const handleRejectTask = (taskName) => {
+    dispatch({
+      type: REJECT_TASK_API_ACTION_SAGA,
+      taskName,
+    });
+  };
 
   return (
     <div className="card">
@@ -156,9 +175,13 @@ export default function HomeSaga(props) {
                   handleChangeInput(event);
                 }}
               />
-              <button id="addItem" type="submit" onClick={(event)=>{
-                handleAddTask(event)
-              }}>
+              <button
+                id="addItem"
+                type="submit"
+                onClick={(event) => {
+                  handleAddTask(event);
+                }}
+              >
                 <i className="fa fa-plus" />
               </button>
             </div>

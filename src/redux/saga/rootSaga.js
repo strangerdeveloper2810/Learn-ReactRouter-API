@@ -4,5 +4,8 @@ export function * rootSaga() {
     yield all([
         TDLSagaAction.actionGetTaskApi(),
         TDLSagaAction.actionAddTaskApi(),
+        TDLSagaAction.actionDeleteTask(),
+        TDLSagaAction.actionDoneTask(),
+        TDLSagaAction.actionRejectTask(),
     ]);
 }
