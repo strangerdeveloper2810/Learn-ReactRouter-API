@@ -8,7 +8,7 @@ import {
   REJECT_TASK_API_ACTION_SAGA,
 } from "../constants/TodolistConstants";
 import { DISPLAY_LOADING, HIDE_LOADING } from "../constants/LoadingConstants";
-import { TDLServices } from "../../services/TodolistServices";
+import {TDLServices} from "../../services/ToDoListServices"
 import { STATUS__CODE } from "../../util/constants/systemSetting";
 
 function* getTaskApi(action) {

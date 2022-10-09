@@ -77,6 +77,16 @@ export default function Header() {
             </NavLink>
           </li>
 
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to="/demoHOC"
+              activeClassName="activeNavItem"
+            >
+              Demo HOC
+            </NavLink>
+          </li>
+
           <li className="nav-item dropdown">
             <span
               className="nav-link dropdown-toggle"
