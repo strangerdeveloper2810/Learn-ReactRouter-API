@@ -1,9 +1,14 @@
 import React from "react";
 import styled from "./LoginJira.module.css";
 import { withFormik } from "formik";
-import * as Yup from "yup"
+import * as Yup from "yup";
+import { connect } from "react-redux";
+import { USER_SIGNIN_API } from "../../../redux/constants/JiraReportBugConstants/UserJiraReportBugConstants";
+import { signinJiraReportBugAction } from "../../../redux/actions/JiraReportBugAction";
 function LoginJira(props) {
-  const { values, touched, errors, handleChange, handleBlur, handleSubmit } = props;
+  const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
+    props;
+
   return (
     <div
       className="container d-flex justify-content-center"
@@ -13,7 +18,9 @@ function LoginJira(props) {
       }}
     >
       <div className={styled.screen}>
-        <h3 className="text-info fs-4 text-center mt-4">{props.displayName}</h3>
+        <h3 className="text-info fs-4 text-center mt-4">
+          Login Jira-Report Bugs
+        </h3>
         <div className={styled.screenContent}>
           <form className={styled.login} onSubmit={handleSubmit}>
             <div className={styled.loginField}>
@@ -42,7 +49,11 @@ function LoginJira(props) {
               />
               <p className="text-danger">{errors.password}</p>
             </div>
-            <button className={styled.button} id={styled.loginSubmit} type="submit">
+            <button
+              className={styled.button}
+              id={styled.loginSubmit}
+              type="submit"
+            >
               <span>Log In Now</span>
               <div className={styled.buttonIcon}>
                 <i className="fa-solid fa-chevron-right" />
@@ -51,7 +62,7 @@ function LoginJira(props) {
           </form>
 
           <div className={styled.socialLogin}>
-            <button className="btn btn-outline-danger">
+            <button className="btn btn-outline-danger mt-3">
               <span>Register</span>
             </button>
             <div className={styled.socialIcons}>
@@ -82,14 +93,19 @@ function LoginJira(props) {
 const LoginJiraReportBugsWithFormik = withFormik({
   mapPropsToValues: () => ({ email: "", password: "" }),
   validationSchema: Yup.object().shape({
-    email: Yup.string().required("Email is required!").email("Email is invalid"),
-    password:  Yup.string().min(6, "Password must have min 6 characters").max(32, "Password have max 32 characters")
-  }) ,
-  handleSubmit: (values, { setSubmitting }) => {
-    console.log(values);
+    email: Yup.string()
+      .required("Email is required!")
+      .email("Email is invalid"),
+    password: Yup.string()
+      .min(6, "Password must have min 6 characters")
+      .max(32, "Password have max 32 characters"),
+  }),
+  handleSubmit: (values, { props, setSubmitting }) => {
+    const { email, password } = values;
+    props.dispatch(signinJiraReportBugAction(email, password));
   },
 
-  displayName: "Login Jira-Report Bugs",
+  displayName: "Login",
 })(LoginJira);
 
-export default LoginJiraReportBugsWithFormik;
+export default connect()(LoginJiraReportBugsWithFormik);

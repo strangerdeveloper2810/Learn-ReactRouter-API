@@ -3,7 +3,7 @@ import LoginJira from "./pages/Jira-ReportBugs/LoginJira-ReportBugs/LoginJira";
 import { UserLoginTemplate } from "./templates/UserTemplate/UserLoginTemplate";
 
 // React-router-dom, Redux-thunk, Redux-saga, HOC 
-// import LoadingComponent from "./components/GlobalSetting/LoadingGlobalComponents/LoadingComponent";
+import LoadingComponent from "./components/GlobalSetting/LoadingGlobalComponents/LoadingComponent";
 // // import Header from "./components/Home/Header/Header";
 // import Modal from "./HOC/Modal/Modal";
 // import About from "./pages/About/About";
@@ -23,8 +23,8 @@ function App() {
   return (
     <BrowserRouter>
     
-      {/* <Modal />
-      <LoadingComponent /> */}
+      {/* <Modal /> */}
+      <LoadingComponent />
       
       <Switch>
         {/* // React-router-dom, Redux-thunk, Redux-saga, HOC  */}

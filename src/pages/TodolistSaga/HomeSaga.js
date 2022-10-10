@@ -7,7 +7,7 @@ import {
   DELETE_TASK_API_ACTION_SAGA,
   CHECK_TASK_API_ACTION_SAGA,
   REJECT_TASK_API_ACTION_SAGA,
-} from "../../redux/constants/TodolistConstants";
+} from "../../redux/constants/TodolistConstants/TodolistConstants";
 export default function HomeSaga(props) {
   let [state, setState] = useState({
     values: {
