@@ -8,9 +8,9 @@ export default function DemoHOCModal(props) {
   const RegisterWithSlideDown = new SlideDown(Register);
 
   // Sử dụng dưới dạng thẻ :
-  const LoginWithSlideDown = function() {
-    return new SlideDown(Login)
-  }
+  const LoginWithSlideDown = function () {
+    return new SlideDown(Login);
+  };
   return (
     <div className="mt-3">
       <button
@@ -43,13 +43,13 @@ export default function DemoHOCModal(props) {
         Đăng Ký
       </button>
 
-     {/* {LoginWithSlideDown} */}
+      {/* {LoginWithSlideDown} */}
 
-     {/* {RegisterWithSlideDown} */}
+      {RegisterWithSlideDown}
 
-     {/* Sử dụng dưới dạng thẻ */}
+      {/* Sử dụng dưới dạng thẻ */}
 
-     <LoginWithSlideDown/>
+      <LoginWithSlideDown />
     </div>
   );
 }
