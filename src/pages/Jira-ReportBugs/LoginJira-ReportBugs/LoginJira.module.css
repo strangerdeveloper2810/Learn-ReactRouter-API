@@ -95,7 +95,7 @@ body {
 
 .loginInput {
   border: none;
-  border-bottom: 2px solid #d1d1d4;
+  /* border-bottom: 2px solid #d1d1d4; */
   background: none;
   padding: 10px;
   padding-left: 24px;
