@@ -2,8 +2,15 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import SlideDown from "./SlideDown";
 export default function DemoHOCModal(props) {
   const dispatch = useDispatch();
+  const RegisterWithSlideDown = new SlideDown(Register);
+
+  // Sử dụng dưới dạng thẻ :
+  const LoginWithSlideDown = function() {
+    return new SlideDown(Login)
+  }
   return (
     <div className="mt-3">
       <button
@@ -35,6 +42,14 @@ export default function DemoHOCModal(props) {
       >
         Đăng Ký
       </button>
+
+     {/* {LoginWithSlideDown} */}
+
+     {/* {RegisterWithSlideDown} */}
+
+     {/* Sử dụng dưới dạng thẻ */}
+
+     <LoginWithSlideDown/>
     </div>
   );
 }
