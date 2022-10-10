@@ -6,7 +6,6 @@ export default function Login(props) {
     account: "",
     password: "",
   });
-  console.log(userLogin);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setUserLogin({
