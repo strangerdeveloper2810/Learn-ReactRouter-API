@@ -1,4 +1,4 @@
-import { DISPLAY_LOADING, HIDE_LOADING } from "../constants/LoadingConstants";
+import { DISPLAY_LOADING, HIDE_LOADING } from "../constants/LoadingConstants/LoadingConstants";
 
 const initialState = {
   isLoading: false,

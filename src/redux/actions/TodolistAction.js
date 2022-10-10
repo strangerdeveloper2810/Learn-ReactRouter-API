@@ -1,6 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-import { GET_TASK_LIST_API } from "../constants/TodolistConstants";
+import { GET_TASK_LIST_API } from "../constants/TodolistConstants/TodolistConstants";
 /*
 Action có 2 loại 
 action thực thi ngay làm thay đổi reducer (action 1)

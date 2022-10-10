@@ -1,12 +1,28 @@
 import React from "react";
 import styled from "./LoginJira.module.css";
-export default function LoginJira(props) {
+import { withFormik } from "formik";
+import * as Yup from "yup";
+import { connect } from "react-redux";
+import { USER_SIGNIN_API } from "../../../redux/constants/JiraReportBugConstants/UserJiraReportBugConstants";
+import { signinJiraReportBugAction } from "../../../redux/actions/JiraReportBugAction";
+function LoginJira(props) {
+  const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
+    props;
+
   return (
-    <div className="container mt-3 d-flex justify-content-center">
+    <div
+      className="container d-flex justify-content-center"
+      style={{
+        background: " linear-gradient(90deg, #c7c5f4, #776bcc)",
+        minHeight: 711,
+      }}
+    >
       <div className={styled.screen}>
-      <h3 className="text-info fs-4 text-center mt-4">Login Jira-Report Bugs</h3>
+        <h3 className="text-info fs-4 text-center mt-4">
+          Login Jira-Report Bugs
+        </h3>
         <div className={styled.screenContent}>
-          <form className={styled.login}>
+          <form className={styled.login} onSubmit={handleSubmit}>
             <div className={styled.loginField}>
               <div className={styled.loginIcon}>
                 <i className="fa-solid fa-user" />
@@ -15,7 +31,10 @@ export default function LoginJira(props) {
                 type="text"
                 className={styled.loginInput}
                 placeholder="User name / Email"
+                name="email"
+                onChange={handleChange}
               />
+              <p className="text-danger">{errors.email}</p>
             </div>
             <div className={styled.loginField}>
               <div className={styled.loginIcon}>
@@ -25,17 +44,25 @@ export default function LoginJira(props) {
                 type="password"
                 className={styled.loginInput}
                 placeholder="Password"
+                name="password"
+                onChange={handleChange}
               />
+              <p className="text-danger">{errors.password}</p>
             </div>
-            <button className={styled.button} id={styled.loginSubmit}>
+            <button
+              className={styled.button}
+              id={styled.loginSubmit}
+              type="submit"
+            >
               <span>Log In Now</span>
               <div className={styled.buttonIcon}>
                 <i className="fa-solid fa-chevron-right" />
               </div>
             </button>
           </form>
+
           <div className={styled.socialLogin}>
-            <button className="btn btn-outline-danger">
+            <button className="btn btn-outline-danger mt-3">
               <span>Register</span>
             </button>
             <div className={styled.socialIcons}>
@@ -51,6 +78,7 @@ export default function LoginJira(props) {
             </div>
           </div>
         </div>
+
         <div className="screenBackground">
           <span className="screenBackgroundShape" id="screenBackgroundShap4" />
           <span className="screen BackgroundShape" id="screenBackgroundShap3" />
@@ -61,3 +89,23 @@ export default function LoginJira(props) {
     </div>
   );
 }
+
+const LoginJiraReportBugsWithFormik = withFormik({
+  mapPropsToValues: () => ({ email: "", password: "" }),
+  validationSchema: Yup.object().shape({
+    email: Yup.string()
+      .required("Email is required!")
+      .email("Email is invalid"),
+    password: Yup.string()
+      .min(6, "Password must have min 6 characters")
+      .max(32, "Password have max 32 characters"),
+  }),
+  handleSubmit: (values, { props, setSubmitting }) => {
+    const { email, password } = values;
+    props.dispatch(signinJiraReportBugAction(email, password));
+  },
+
+  displayName: "Login",
+})(LoginJira);
+
+export default connect()(LoginJiraReportBugsWithFormik);

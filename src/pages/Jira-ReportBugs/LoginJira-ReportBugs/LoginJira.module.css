@@ -14,6 +14,7 @@ body {
   height: 600px;
   width: 360px;
   box-shadow: 0px 0px 24px #5c5696;
+  margin-top: 10px;
 }
 
 .screenContent {
@@ -94,12 +95,12 @@ body {
 
 .loginInput {
   border: none;
-  border-bottom: 2px solid #d1d1d4;
+  /* border-bottom: 2px solid #d1d1d4; */
   background: none;
   padding: 10px;
   padding-left: 24px;
   font-weight: 700;
-  width: 75%;
+  width: 100%;
   transition: 0.2s;
 }
 

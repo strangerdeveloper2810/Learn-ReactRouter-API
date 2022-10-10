@@ -1,4 +1,4 @@
-import { GET_TASK_LIST_API } from "../constants/TodolistConstants";
+import { GET_TASK_LIST_API } from "../constants/TodolistConstants/TodolistConstants";
 const initialState = {
   taskList: [],
 };
