@@ -1,8 +1,8 @@
-import { BrowserRouter, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import LoginJira from "./pages/Jira-ReportBugs/LoginJira-ReportBugs/LoginJira";
 import { UserLoginTemplate } from "./templates/UserTemplate/UserLoginTemplate";
 
-// React-router-dom, Redux-thunk, Redux-saga, HOC 
+// React-router-dom, Redux-thunk, Redux-saga, HOC
 import LoadingComponent from "./components/GlobalSetting/LoadingGlobalComponents/LoadingComponent";
 // // import Header from "./components/Home/Header/Header";
 // import Modal from "./HOC/Modal/Modal";
@@ -10,22 +10,32 @@ import LoadingComponent from "./components/GlobalSetting/LoadingGlobalComponents
 // import Contact from "./pages/Contact/Contact";
 // import DemoHOCModal from "./pages/DemoHOC/DemoHOCModal";
 // import Detail from "./pages/Detail/Detail";
-// import Home from "./pages/Home/Home";
+import Home from "./pages/Home/Home";
 // import Login from "./pages/Login/Login";
-// import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 // import Profile from "./pages/Profile/Profile";
 // import Todolist from "./pages/Todolist/Todolist";
 // import TodolistRedux from "./pages/Todolist/TodolistRedux";
 // import TodolistRFC from "./pages/Todolist/TodolistRFC";
 // import HomeSaga from "./pages/TodolistSaga/HomeSaga";
-// import { HomeTemplate } from "./templates/HomeTemplate/HomeTemplate";
+import { HomeTemplate } from "./templates/HomeTemplate/HomeTemplate";
+import React, { useEffect, Fragment } from "react";
+import { useDispatch } from "react-redux";
+import { ADD_HISTORY } from "./redux/constants/HistoryConstants/HistoryConstants";
 function App() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({
+      type: ADD_HISTORY,
+      history: history,
+    });
+  }, []);
   return (
-    <BrowserRouter>
-    
+    <Fragment>
       {/* <Modal /> */}
       <LoadingComponent />
-      
+
       <Switch>
         {/* // React-router-dom, Redux-thunk, Redux-saga, HOC  */}
         {/* <Route exact path="/" component={Home} />
@@ -42,12 +52,12 @@ function App() {
         <Route path="*" component={PageNotFound} /> */}
 
         {/* For Project Jira */}
-        <UserLoginTemplate exact path="/login" Component={LoginJira}/>
+        <HomeTemplate exact path="/" Component={Home} />
+        <UserLoginTemplate exact path="/login" Component={LoginJira} />
+        <HomeTemplate exact path="/home" Component={Home} />
+        <Route path="*" component={PageNotFound} />
       </Switch>
-
-
-
-    </BrowserRouter>
+    </Fragment>
   );
 }
 

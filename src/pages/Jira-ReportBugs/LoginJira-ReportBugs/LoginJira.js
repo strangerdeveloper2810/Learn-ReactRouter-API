@@ -3,12 +3,9 @@ import styled from "./LoginJira.module.css";
 import { withFormik } from "formik";
 import * as Yup from "yup";
 import { connect } from "react-redux";
-import { USER_SIGNIN_API } from "../../../redux/constants/JiraReportBugConstants/UserJiraReportBugConstants";
 import { signinJiraReportBugAction } from "../../../redux/actions/JiraReportBugAction";
 function LoginJira(props) {
-  const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
-    props;
-
+  const { errors, handleChange, handleSubmit } = props;
   return (
     <div
       className="container d-flex justify-content-center"
