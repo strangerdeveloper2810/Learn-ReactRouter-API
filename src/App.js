@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Switch } from "react-router-dom";
 import LoginJira from "./pages/Jira-ReportBugs/LoginJira-ReportBugs/LoginJira";
 import { UserLoginTemplate } from "./templates/UserTemplate/UserLoginTemplate";
 

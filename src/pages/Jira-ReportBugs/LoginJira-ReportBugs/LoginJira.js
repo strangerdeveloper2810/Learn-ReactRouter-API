@@ -2,9 +2,14 @@ import React from "react";
 import styled from "./LoginJira.module.css";
 export default function LoginJira(props) {
   return (
-    <div className="container mt-3 d-flex justify-content-center">
+    <div
+      className="container d-flex justify-content-center"
+      style={{ background: " linear-gradient(90deg, #c7c5f4, #776bcc)", minHeight: 711 }}
+    >
       <div className={styled.screen}>
-      <h3 className="text-info fs-4 text-center mt-4">Login Jira-Report Bugs</h3>
+        <h3 className="text-info fs-4 text-center mt-4">
+          Login Jira-Report Bugs
+        </h3>
         <div className={styled.screenContent}>
           <form className={styled.login}>
             <div className={styled.loginField}>

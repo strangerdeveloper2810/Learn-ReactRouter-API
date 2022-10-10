@@ -11,7 +11,14 @@ export const UserLoginTemplate = (props) => {
         return (
           <Fragment>
             <Layout>
-              <Sider width={window.innerWidth/1.75} style={{height: window.innerHeight, backgroundImage: 'url(https://picsum.photos/2000)', backgroundSize: "100%"}}></Sider>
+              <Sider
+                width={window.innerWidth / 2}
+                style={{
+                  height: window.innerHeight,
+                  backgroundImage: "url(https://picsum.photos/2000)",
+                  backgroundSize: "100%",
+                }}
+              ></Sider>
               <Content>
                 <Component {...propsRoute} />
               </Content>
