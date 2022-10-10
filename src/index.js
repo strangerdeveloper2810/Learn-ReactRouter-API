@@ -5,7 +5,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./redux/configStore";
 import { Provider } from "react-redux";
-import "antd/dist/antd.less";
+// import "antd/dist/antd.less";
+import 'antd/dist/antd.css';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
