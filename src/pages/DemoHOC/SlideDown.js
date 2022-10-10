@@ -7,7 +7,7 @@ export default function SlideDown(Component) {
       marginTop: "0",
     },
     from: {
-      marginTop: "-100px",
+      marginTop: "-150px",
     },
     config: {
       duration: 2000,
