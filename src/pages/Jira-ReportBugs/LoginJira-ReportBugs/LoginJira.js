@@ -35,7 +35,9 @@ export default function LoginJira(props) {
             </button>
           </form>
           <div className={styled.socialLogin}>
-            <h3>log in via</h3>
+            <button className="btn btn-outline-danger">
+              <span>Register</span>
+            </button>
             <div className={styled.socialIcons}>
               <a href="#a" className={styled.socialLoginIcon}>
                 <i className="fa-brands fa-facebook" />
