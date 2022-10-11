@@ -14,5 +14,6 @@ export function * rootSaga() {
     // Jira 
     yield all([
         userJira.actionSignin(),
+        userJira.actionSignup()
     ]);
 }

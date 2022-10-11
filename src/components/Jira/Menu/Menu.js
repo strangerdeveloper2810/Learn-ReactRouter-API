@@ -1,14 +1,17 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 export default function Menu(props) {
+  const userLogin = useSelector((state) => state.UserJiraReducer.userLogin);
+
   return (
     <div className="menu">
       <div className="account">
         <div className="avatar">
-          <img src="/img/4.jfif" alt="4.jfif" />
+          <img src={userLogin.avatar} alt="4.jfif" />
         </div>
         <div className="account-info">
-          <p>CyberLearn.vn</p>
+          <p>{userLogin.name}</p>
           <p>Report bugs</p>
         </div>
       </div>

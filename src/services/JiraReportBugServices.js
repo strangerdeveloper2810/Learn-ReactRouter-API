@@ -11,6 +11,13 @@ export class JiraReportBugServices {
       data: userLogin,
     });
   };
+  signupJira = (userRegister) => {
+    return axios({
+      url: `${DOMAINJIRA}/Users/signup`,
+      method: "POST",
+      data: userRegister,
+    });
+  };
 }
 
 export const JiraServices = new JiraReportBugServices();
