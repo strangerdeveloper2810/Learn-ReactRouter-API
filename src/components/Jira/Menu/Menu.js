@@ -18,14 +18,22 @@ export default function Menu(props) {
       <div className="control">
         <div>
           <i className="fa fa-credit-card" />
-          <NavLink to="/home">
+          <NavLink
+            to="/home"
+            className="text-dark"
+            activeClassName="active text-primary fw-bold"
+          >
             <span> Cyber Board</span>
           </NavLink>
         </div>
         <div>
           <i className="fa fa-cog" />
-          <NavLink to="/createproject">
-            <span> Project Settings</span>
+          <NavLink
+            to="/createproject"
+            className="text-dark"
+            activeClassName="active text-primary fw-bold"
+          >
+            <span> Create Project</span>
           </NavLink>
         </div>
       </div>
