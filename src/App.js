@@ -23,11 +23,11 @@ function App() {
     <Fragment>
       <LoadingComponent />
       <Switch>
-        
+        {/* For Project Jira */}
+        <UserLoginTemplate exact path="/" Component={LoginJira} />
         <UserLoginTemplate exact path="/login" Component={LoginJira} />
         <UserLoginTemplate exact path="/register" Component={RegisterJira} />
         <JiraTemplate exact path="/home" Component={Home} />
-        <JiraTemplate exact path="/" Component={Home} />
         <JiraTemplate exact path="/createproject" Component={CreateProject} />
         <Route path="*" component={PageNotFound} />
       </Switch>
