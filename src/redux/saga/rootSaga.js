@@ -17,5 +17,6 @@ export function * rootSaga() {
         userJira.actionSignin(),
         userJira.actionSignup(),
         projectJira.actionGetCategoryProject(),
+        projectJira.actionCreateProject(),
     ]);
 }

@@ -27,6 +27,14 @@ export class JiraReportBugServices {
     });
   }
 
+  createProjectJira = (newProject) => {
+    return axios({
+      url : `${DOMAINJIRA}/Project/createProject`,
+      method: "POST",
+      data: newProject
+    });
+  }
+
 
 
 }
