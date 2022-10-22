@@ -1,28 +1,39 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 export default function Menu(props) {
+  const userLogin = useSelector((state) => state.UserJiraReducer.userLogin);
+
   return (
     <div className="menu">
       <div className="account">
         <div className="avatar">
-          <img src="/img/4.jfif" alt="4.jfif" />
+          <img src={userLogin.avatar} alt="4.jfif" />
         </div>
         <div className="account-info">
-          <p>CyberLearn.vn</p>
+          <p>{userLogin.name}</p>
           <p>Report bugs</p>
         </div>
       </div>
       <div className="control">
         <div>
           <i className="fa fa-credit-card" />
-          <NavLink to="/home">
+          <NavLink
+            to="/home"
+            className="text-dark"
+            activeClassName="active text-primary fw-bold"
+          >
             <span> Cyber Board</span>
           </NavLink>
         </div>
         <div>
           <i className="fa fa-cog" />
-          <NavLink to="/createproject">
-            <span> Project Settings</span>
+          <NavLink
+            to="/createproject"
+            className="text-dark"
+            activeClassName="active text-primary fw-bold"
+          >
+            <span> Create Project</span>
           </NavLink>
         </div>
       </div>

@@ -7,7 +7,7 @@ export default function Main(props) {
   return (
     <div className="main mt-3">
       <Header />
-      <h3>Cyber Board</h3>
+      <h3>Report Bugs Board</h3>
       <Info />
       <Content />
     </div>

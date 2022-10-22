@@ -4,6 +4,7 @@ import { withFormik } from "formik";
 import * as Yup from "yup";
 import { connect } from "react-redux";
 import { signinJiraReportBugAction } from "../../../redux/actions/JiraReportBugAction";
+import { NavLink } from "react-router-dom";
 function LoginJira(props) {
   const { errors, handleChange, handleSubmit } = props;
   return (
@@ -59,19 +60,22 @@ function LoginJira(props) {
           </form>
 
           <div className={styled.socialLogin}>
-            <button className="btn btn-outline-danger mt-3">
-              <span>Register</span>
-            </button>
+            <NavLink to="/register">
+              <button className="btn btn-outline-danger mt-3">
+                <span>Register</span>
+              </button>
+            </NavLink>
+
             <div className={styled.socialIcons}>
-              <a href="#a" className={styled.socialLoginIcon}>
+              <span className={styled.socialLoginIcon}>
                 <i className="fa-brands fa-facebook" />
-              </a>
-              <a href="#a" className={styled.socialLoginIcon}>
+              </span>
+              <span className={styled.socialLoginIcon}>
                 <i className="fa-brands fa-instagram" />
-              </a>
-              <a href="#a" className={styled.socialLoginIcon}>
+              </span>
+              <span className={styled.socialLoginIcon}>
                 <i className="fa-brands fa-twitter" />
-              </a>
+              </span>
             </div>
           </div>
         </div>
@@ -94,6 +98,7 @@ const LoginJiraReportBugsWithFormik = withFormik({
       .required("Email is required!")
       .email("Email is invalid"),
     password: Yup.string()
+      .required("Password is required!")
       .min(6, "Password must have min 6 characters")
       .max(32, "Password have max 32 characters"),
   }),
