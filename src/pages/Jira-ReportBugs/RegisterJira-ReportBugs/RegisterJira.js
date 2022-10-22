@@ -70,7 +70,9 @@ function RegisterJira(props) {
           </label>
         </div>
         <div className={styled.formField}>
-          <button type="submit" className="btn btn-outline-danger">Create Account</button>
+          <button type="submit" className="btn btn-outline-danger">
+            Create Account
+          </button>
         </div>
         <p className="text-success mt-4">
           Already have an account?{" "}
@@ -105,9 +107,12 @@ const RegisterJiraReportBugsWithFormik = withFormik({
       .required("Phone Number  is required!")
       .max(10, "Phone Number have max 10 characters"),
   }),
+  
   handleSubmit: (values, { props, setSubmitting }) => {
     const { email, password, name, phoneNumber } = values;
-    props.dispatch(signupJiraReportBugAction(email, password, name, phoneNumber));
+    props.dispatch(
+      signupJiraReportBugAction(email, password, name, phoneNumber)
+    );
   },
 })(RegisterJira);
 

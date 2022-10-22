@@ -11,6 +11,7 @@ export class JiraReportBugServices {
       data: userLogin,
     });
   };
+
   signupJira = (userRegister) => {
     return axios({
       url: `${DOMAINJIRA}/Users/signup`,
@@ -18,6 +19,16 @@ export class JiraReportBugServices {
       data: userRegister,
     });
   };
+
+  getAllProjectCategory = () => {
+    return axios({
+      url : `${DOMAINJIRA}/ProjectCategory`,
+      method: "GET"
+    });
+  }
+
+
+
 }
 
 export const JiraServices = new JiraReportBugServices();
