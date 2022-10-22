@@ -41,7 +41,7 @@ function* createProjectSaga(action) {
     yield delay(2000);
 
     let { data, status } = yield call(() => {
-      return JiraServices.createProjectJira(action.newProject);
+      return JiraServices.createProjectAuthorizeJira(action.newProject);
     });
 
     if (status === STATUS__CODE.SUCCESS) {

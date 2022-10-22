@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DOMAINJIRA } from "../util/constants/systemSetting";
+import { DOMAINJIRA,TOKEN } from "../util/constants/systemSetting";
 
 export class JiraReportBugServices {
   constructor() {}
@@ -35,6 +35,15 @@ export class JiraReportBugServices {
     });
   }
 
+  createProjectAuthorizeJira= (newProject) => {
+    return axios({
+      url : `${DOMAINJIRA}/Project/createProject`,
+      method: "POST",
+      data: newProject,
+      // JWT: JSON WEB TOKEN
+      headers: {"Authorize": "Beaer " +localStorage.getItem(TOKEN)}, 
+    });
+  }
 
 
 }
