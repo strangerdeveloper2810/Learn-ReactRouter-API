@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DOMAINJIRA,TOKEN } from "../util/constants/systemSetting";
+import { DOMAINJIRA, TOKEN } from "../util/constants/systemSetting";
 
 export class JiraReportBugServices {
   constructor() {}
@@ -22,30 +22,29 @@ export class JiraReportBugServices {
 
   getAllProjectCategory = () => {
     return axios({
-      url : `${DOMAINJIRA}/ProjectCategory`,
-      method: "GET"
+      url: `${DOMAINJIRA}/ProjectCategory`,
+      method: "GET",
     });
-  }
+  };
 
   createProjectJira = (newProject) => {
     return axios({
-      url : `${DOMAINJIRA}/Project/createProject`,
+      url: `${DOMAINJIRA}/Project/createProject`,
       method: "POST",
-      data: newProject
+      data: newProject,
     });
-  }
+  };
 
-  createProjectAuthorizeJira= (newProject) => {
+  createProjectAuthorizeJira = (newProject) => {
     return axios({
-      url : `${DOMAINJIRA}/Project/createProject`,
+      url: `${DOMAINJIRA}/Project/createProject`,
       method: "POST",
       data: newProject,
       // JWT: JSON WEB TOKEN
-      headers: {"Authorize": "Beaer " +localStorage.getItem(TOKEN)}, 
+      headers: { Authorize: "Beaer " + localStorage.getItem(TOKEN) },
     });
-  }
-
-
+  };
+  
 }
 
 export const JiraServices = new JiraReportBugServices();

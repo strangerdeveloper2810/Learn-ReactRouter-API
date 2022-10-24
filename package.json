@@ -13,6 +13,7 @@
     "axios": "^0.27.2",
     "formik": "^2.2.9",
     "history": "^4.10.0",
+    "html-react-parser": "^3.0.4",
     "node-sass": "^7.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
