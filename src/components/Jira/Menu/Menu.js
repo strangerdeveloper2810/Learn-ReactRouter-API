@@ -10,11 +10,13 @@ export default function Menu(props) {
         <div className="avatar">
           <img src={userLogin.avatar} alt="4.jfif" />
         </div>
+
         <div className="account-info">
           <p>{userLogin.name}</p>
           <p>Report bugs</p>
         </div>
       </div>
+
       <div className="control">
         <div>
           <i className="fa fa-credit-card" />
@@ -23,9 +25,21 @@ export default function Menu(props) {
             className="text-dark"
             activeClassName="active text-primary fw-bold"
           >
-            <span> Cyber Board</span>
+            <span> Report Board</span>
           </NavLink>
         </div>
+
+        <div>
+          <i className="fa fa-cog" />
+          <NavLink
+            to="/projectmanagement"
+            className="text-dark"
+            activeClassName="active text-primary fw-bold"
+          >
+            <span> Project Management</span>
+          </NavLink>
+        </div>
+
         <div>
           <i className="fa fa-cog" />
           <NavLink
@@ -37,6 +51,7 @@ export default function Menu(props) {
           </NavLink>
         </div>
       </div>
+
       <div className="feature">
         <div>
           <i className="fa fa-truck" />

@@ -10,6 +10,7 @@ import JiraTemplate from "./templates/JiraTemplate/JiraTemplate";
 import Home from "./components/Jira/Home/Home";
 import CreateProject from "./pages/Jira-ReportBugs/CreateProject/CreateProject";
 import RegisterJira from "./pages/Jira-ReportBugs/RegisterJira-ReportBugs/RegisterJira";
+import ProjectManagement from "./pages/Jira-ReportBugs/ProjectManagent/ProjectManagement";
 function App() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -29,6 +30,11 @@ function App() {
         <UserLoginTemplate exact path="/register" Component={RegisterJira} />
         <JiraTemplate exact path="/home" Component={Home} />
         <JiraTemplate exact path="/createproject" Component={CreateProject} />
+        <JiraTemplate
+          exact
+          path="/projectmanagement"
+          Component={ProjectManagement}
+        />
         <Route path="*" component={PageNotFound} />
       </Switch>
     </Fragment>
