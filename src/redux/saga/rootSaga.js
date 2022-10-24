@@ -1,7 +1,7 @@
 // import * as TDLSagaAction from "./TodolistSagaAction";
 import {all} from "redux-saga/effects"
 import * as userJira from "./JiraReportBugs/UserJiraReportBug";
-import * as projectJira from "./JiraReportBugs/JiraCategoryProject";
+import * as projectJira from "./JiraReportBugs/ProjectJiraReportBug";
 export function * rootSaga() {
     // TodolistSaga
     // yield all([
@@ -18,5 +18,6 @@ export function * rootSaga() {
         userJira.actionSignup(),
         projectJira.actionGetCategoryProject(),
         projectJira.actionCreateProject(),
+        projectJira.actionGetAllProject(),
     ]);
 }

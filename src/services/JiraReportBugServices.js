@@ -41,10 +41,17 @@ export class JiraReportBugServices {
       method: "POST",
       data: newProject,
       // JWT: JSON WEB TOKEN
-      headers: { Authorize: "Beaer " + localStorage.getItem(TOKEN) },
+      headers: { Authorization: "Bearer " + localStorage.getItem(TOKEN) },
     });
   };
-  
+
+  getAllProjectJira = () => {
+    return axios({
+      url: `${DOMAINJIRA}/Project/getAllProject`,
+      method: "GET",
+      headers: { Authorization: "Bearer " + localStorage.getItem(TOKEN) },
+    });
+  };
 }
 
 export const JiraServices = new JiraReportBugServices();
