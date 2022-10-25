@@ -67,6 +67,11 @@ export function* actionCreateProject() {
 
 function* getAllProject(action) {
   try {
+    yield put({
+      type: DISPLAY_LOADING,
+    });
+
+    yield delay(1500);
     let { data, status } = yield call(() => {
       return JiraServices.getAllProjectJira();
     });
@@ -75,12 +80,16 @@ function* getAllProject(action) {
       console.log(data);
       yield put({
         type: GET_ALL_PROJECT_ACTION,
-        projectList: data,
+        projectList: data.content,
       });
     }
   } catch (error) {
     console.log(error.respone.data);
   }
+
+  yield put({
+    type: HIDE_LOADING,
+  });
 }
 
 export function* actionGetAllProject() {

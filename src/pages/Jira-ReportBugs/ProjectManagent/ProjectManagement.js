@@ -1,4 +1,4 @@
-import { Table } from "antd";
+import { Table, Tag } from "antd";
 import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import { DeleteFilled, EditFilled } from "@ant-design/icons/lib/icons";
@@ -22,14 +22,27 @@ export default function ProjectManagement(props) {
       title: "id",
       dataIndex: "id",
       key: "id",
-      width: "10%",
+      width: 10,
+      sorter: (item2, item1) => {
+        return item2.id - item1.id;
+      },
+      sortDirection: ["descend"],
     },
 
     {
       title: "Project Name",
       dataIndex: "projectName",
       key: "projectName",
-      width: "25%",
+      width: 25,
+      sorter: (item2, item1) => {
+        let projectName1 = item1.projectName?.trim().toLowerCase();
+        let projectName2 = item2.projectName?.trim().toLowerCase();
+
+        if (projectName2 < projectName1) {
+          return -1;
+        }
+        return 1;
+      },
     },
 
     {
@@ -47,7 +60,35 @@ export default function ProjectManagement(props) {
       title: "Category Name",
       dataIndex: "categoryName",
       key: "categoryName",
-      width: "20%",
+      width: 25,
+      sorter: (item2, item1) => {
+        let categoryName1 = item1.categoryName?.trim().toLowerCase();
+        let categoryName2 = item2.categoryName?.trim().toLowerCase();
+
+        if (categoryName2 < categoryName1) {
+          return -1;
+        }
+        return 1;
+      },
+    },
+
+    {
+      title: "Creator",
+      dataIndex: "creator",
+      key: "creator",
+      render: (text, record, index) => {
+        return <Tag color="green">{record.creator?.name}</Tag>;
+      },
+      width: 10,
+      sorter: (item2, item1) => {
+        let creator1 = item1.creator?.name.trim().toLowerCase();
+        let creator2 = item2.creator?.name.trim().toLowerCase();
+
+        if (creator2 < creator1) {
+          return -1;
+        }
+        return 1;
+      },
     },
 
     {
@@ -66,7 +107,7 @@ export default function ProjectManagement(props) {
           </div>
         );
       },
-      width: "20%",
+      width: 20,
     },
   ];
 
@@ -90,12 +131,13 @@ export default function ProjectManagement(props) {
       <h3 className="fs-2 fw-bolder mt-2">Project Management</h3>
       <Table
         columns={columns}
+        rowKey="id"
         dataSource={projectList}
         pagination={tableParams.pagination}
         loading={false}
         onChange={handleTableChange}
         tableLayout={"auto"}
-        scroll={{ y: 540 }}
+        scroll={{ y: 525 }}
       />
     </div>
   );
