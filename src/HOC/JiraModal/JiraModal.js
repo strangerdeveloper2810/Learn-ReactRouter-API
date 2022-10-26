@@ -6,7 +6,9 @@ import {
   HIDE_MODAL,
 } from "../../redux/constants/JiraModalConstants/JiraModalConstants";
 export default function JiraModal(props) {
-  const {visible, ComponentModal} = useSelector((state) => state.ModalJiraReducer);
+  const { visible, ComponentModal, callBackSubmit } = useSelector(
+    (state) => state.ModalJiraReducer
+  );
 
   const dispatch = useDispatch();
 
@@ -24,7 +26,6 @@ export default function JiraModal(props) {
 
   return (
     <>
-     
       <Drawer
         title="Create a new account"
         width={720}
@@ -36,12 +37,11 @@ export default function JiraModal(props) {
         extra={
           <Space>
             <Button onClick={onClose}>Cancel</Button>
-            <Button onClick={onClose} type="primary">
+            <Button onClick={callBackSubmit} type="primary">
               Submit
             </Button>
           </Space>
         }
-        
       >
         {ComponentModal}
       </Drawer>
