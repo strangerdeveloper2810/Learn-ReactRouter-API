@@ -22,7 +22,7 @@ export default function ProjectManagement(props) {
       title: "id",
       dataIndex: "id",
       key: "id",
-      width: 10,
+      width: 12,
       sorter: (item2, item1) => {
         return item2.id - item1.id;
       },
@@ -33,7 +33,7 @@ export default function ProjectManagement(props) {
       title: "Project Name",
       dataIndex: "projectName",
       key: "projectName",
-      width: 25,
+      width: 20,
       sorter: (item2, item1) => {
         let projectName1 = item1.projectName?.trim().toLowerCase();
         let projectName2 = item2.projectName?.trim().toLowerCase();
@@ -49,18 +49,18 @@ export default function ProjectManagement(props) {
       title: "Description",
       dataIndex: "description",
       key: "description",
+      width: 50,
       render: (text, record, index) => {
         let contentJSX = parse(text);
         return <div>{contentJSX}</div>;
       },
-      width: 10,
     },
 
     {
       title: "Category Name",
       dataIndex: "categoryName",
       key: "categoryName",
-      width: 25,
+      width: 20,
       sorter: (item2, item1) => {
         let categoryName1 = item1.categoryName?.trim().toLowerCase();
         let categoryName2 = item2.categoryName?.trim().toLowerCase();
@@ -76,10 +76,11 @@ export default function ProjectManagement(props) {
       title: "Creator",
       dataIndex: "creator",
       key: "creator",
+      width: 20,
       render: (text, record, index) => {
         return <Tag color="green">{record.creator?.name}</Tag>;
       },
-      width: 10,
+
       sorter: (item2, item1) => {
         let creator1 = item1.creator?.name.trim().toLowerCase();
         let creator2 = item2.creator?.name.trim().toLowerCase();
@@ -95,6 +96,7 @@ export default function ProjectManagement(props) {
       title: "Action",
       dataIndex: "",
       key: "x",
+      width: 20,
       render: (text, record, index) => {
         return (
           <div>
@@ -107,7 +109,6 @@ export default function ProjectManagement(props) {
           </div>
         );
       },
-      width: 20,
     },
   ];
 
@@ -137,7 +138,7 @@ export default function ProjectManagement(props) {
         loading={false}
         onChange={handleTableChange}
         tableLayout={"auto"}
-        scroll={{ y: 525 }}
+        scroll={{ x: 400, y: 500 }}
       />
     </div>
   );
