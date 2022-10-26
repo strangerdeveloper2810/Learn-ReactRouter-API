@@ -11,6 +11,7 @@ import Home from "./components/Jira/Home/Home";
 import CreateProject from "./pages/Jira-ReportBugs/CreateProject/CreateProject";
 import RegisterJira from "./pages/Jira-ReportBugs/RegisterJira-ReportBugs/RegisterJira";
 import ProjectManagement from "./pages/Jira-ReportBugs/ProjectManagent/ProjectManagement";
+import JiraModal from "./HOC/JiraModal/JiraModal";
 function App() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function App() {
   return (
     <Fragment>
       <LoadingComponent />
+      <JiraModal/>
       <Switch>
         {/* For Project Jira */}
         <UserLoginTemplate exact path="/" Component={LoginJira} />
