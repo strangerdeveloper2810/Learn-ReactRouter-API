@@ -71,7 +71,7 @@ function* getAllProject(action) {
       type: DISPLAY_LOADING,
     });
 
-    yield delay(1500);
+    yield delay(1000);
     let { data, status } = yield call(() => {
       return JiraServices.getAllProjectJira();
     });
