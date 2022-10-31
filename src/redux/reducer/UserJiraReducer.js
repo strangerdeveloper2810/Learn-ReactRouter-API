@@ -6,7 +6,7 @@ if(localStorage.getItem(USER_LOGIN)) {
 }
 
 const initialState = {
-    userLogin: usLogin
+  userLogin: usLogin
 }
 
 const UserJiraReducer = (state = initialState, action) => {
