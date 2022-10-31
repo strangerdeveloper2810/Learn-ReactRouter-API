@@ -8,6 +8,7 @@ import UserJiraReducer from "./reducer/UserJiraReducer";
 import JiraProjectCategoryReducer from "./reducer/JiraProjectCategoryReducer";
 import ProjectListReducer from "./reducer/ProjectListJiraReducer";
 import ModalJiraReducer from "./reducer/ModalJiraReducer";
+import JiraProjectReducer from "./reducer/JiraProjectReducer";
 // middleware saga
 import createSagaMiddleware from "redux-saga";
 import { rootSaga } from "./saga/rootSaga";
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   UserJiraReducer,
   JiraProjectCategoryReducer,
   ProjectListReducer,
-  ModalJiraReducer
+  ModalJiraReducer,
+  JiraProjectReducer
 
 });
 
