@@ -1,4 +1,4 @@
-import { Table, Tag } from "antd";
+import { Table, Tag, Popconfirm } from "antd";
 import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import { DeleteFilled, EditFilled } from "@ant-design/icons/lib/icons";
@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { GET_ALL_PROJECT_API } from "../../../redux/constants/JiraReportBugConstants/ProjectListJiraConstants";
 import { openFormEditProjectAction } from "../../../redux/actions/JiraFormHandleAction";
 import { editJiraProjectAction } from "../../../redux/actions/JiraProjectActions";
+import { DELETE_PROJECT } from "../../../redux/constants/JiraReportBugConstants/JiraProjectConstants";
+
 export default function ProjectManagement(props) {
   const projectList = useSelector(
     (state) => state.ProjectListReducer.projectList
@@ -111,9 +113,21 @@ export default function ProjectManagement(props) {
             >
               <EditFilled style={{ fontSize: 17 }} />
             </button>
-            <button className="btn btn-danger">
-              <DeleteFilled style={{ fontSize: 17 }} />
-            </button>
+            <Popconfirm
+              title="Are you sure to delete this project?"
+              onConfirm={() => {
+                dispatch({
+                  type: DELETE_PROJECT,
+                  idProject: record.id,
+                });
+              }}
+              okText="Yes"
+              cancelText="No"
+            >
+              <button className="btn btn-danger">
+                <DeleteFilled style={{ fontSize: 17 }} />
+              </button>
+            </Popconfirm>
           </div>
         );
       },

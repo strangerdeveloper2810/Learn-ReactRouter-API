@@ -2,23 +2,6 @@ import axios from "axios";
 import { DOMAINJIRA, TOKEN } from "../util/constants/systemSetting";
 
 export class JiraReportBugServices {
-  constructor() {}
-
-  signinJira = (userLogin) => {
-    return axios({
-      url: `${DOMAINJIRA}/Users/signin`,
-      method: "POST",
-      data: userLogin,
-    });
-  };
-
-  signupJira = (userRegister) => {
-    return axios({
-      url: `${DOMAINJIRA}/Users/signup`,
-      method: "POST",
-      data: userRegister,
-    });
-  };
 
   getAllProjectCategory = () => {
     return axios({
@@ -61,6 +44,8 @@ export class JiraReportBugServices {
       headers: { Authorization: "Bearer " + localStorage.getItem(TOKEN) },
     });
   };
+
+  
 }
 
 export const JiraServices = new JiraReportBugServices();

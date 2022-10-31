@@ -4,7 +4,11 @@ import {
   CATEGORY_PROJECT_API,
   CREATE_PROJECT_API,
 } from "../../constants/JiraReportBugConstants/JiraCategoryProjectConstants";
-import { UPDATE_PROJECT } from "../../constants/JiraReportBugConstants/JiraProjectConstants";
+
+import {
+  UPDATE_PROJECT,
+  DELETE_PROJECT,
+} from "../../constants/JiraReportBugConstants/JiraProjectConstants";
 import {
   GET_ALL_PROJECT_API,
   GET_ALL_PROJECT_ACTION,
@@ -13,14 +17,15 @@ import {
   DISPLAY_LOADING,
   HIDE_LOADING,
 } from "../../constants/LoadingConstants/LoadingConstants";
-import {HIDE_MODAL} from "../../constants/JiraModalConstants/JiraModalConstants"
-import { JiraServices } from "../../../services/JiraReportBugServices";
+import { HIDE_MODAL } from "../../constants/JiraModalConstants/JiraModalConstants";
+import { JiraProjectApi } from "../../../services/JiraProjectServices";
+
 import { STATUS__CODE } from "../../../util/constants/systemSetting";
 import history from "../../../util/history";
 
 function* getCategoryProjectSaga(action) {
   let { data, status } = yield call(() => {
-    return JiraServices.getAllProjectCategory();
+    return JiraProjectApi.getAllProjectCategory();
   });
 
   try {
@@ -48,7 +53,7 @@ function* createProjectSaga(action) {
     yield delay(2000);
 
     let { status } = yield call(() => {
-      return JiraServices.createProjectAuthorizeJira(action.newProject);
+      return JiraProjectApi.createProjectAuthorizeJira(action.newProject);
     });
 
     if (status === STATUS__CODE.SUCCESS) {
@@ -75,7 +80,7 @@ function* getAllProject(action) {
 
     yield delay(1000);
     let { data, status } = yield call(() => {
-      return JiraServices.getAllProjectJira();
+      return JiraProjectApi.getAllProjectJira();
     });
 
     if (status === STATUS__CODE.SUCCESS) {
@@ -99,37 +104,72 @@ export function* actionGetAllProject() {
 }
 
 function* updateProjectSaga(action) {
+  const { projectUpdate } = action;
   try {
     yield put({
       type: DISPLAY_LOADING,
     });
-    yield delay(1500);
 
+    yield delay(1500);
     let { data, status } = yield call(() => {
-      return JiraServices.updateProjectJira(action.projectUpdate);
+      return JiraProjectApi.updateProjectJira(projectUpdate);
     });
 
     if (status === STATUS__CODE.SUCCESS) {
       console.log(data);
-
-      yield put({
-        type: GET_ALL_PROJECT_API
-      });
-
-      yield put({
-        type: HIDE_MODAL
-      });
     }
 
+    yield put({
+      type: GET_ALL_PROJECT_API,
+    });
+
+    yield put({
+      type: HIDE_MODAL,
+    });
   } catch (error) {
     console.log(error.respone.data);
   }
 
   yield put({
-    type: HIDE_LOADING
+    type: HIDE_LOADING,
   });
 }
 
 export function* actionUpdateProject() {
   yield takeLatest(UPDATE_PROJECT, updateProjectSaga);
+}
+
+function* deleteProjectSaga(action) {
+  try {
+    yield put({
+      type: DISPLAY_LOADING,
+    });
+
+    yield delay(1500);
+    let { data, status } = yield call(() => {
+      return JiraProjectApi.deleteProjectJira(action.idProject);
+    });
+
+    if (status === STATUS__CODE.SUCCESS) {
+      console.log(data);
+    }
+
+    yield put({
+      type: GET_ALL_PROJECT_API,
+    });
+
+    yield put({
+      type: HIDE_MODAL,
+    });
+  } catch (error) {
+    console.log(error.respone.data);
+  }
+
+  yield put({
+    type: HIDE_LOADING,
+  });
+}
+
+export function* actionDeleteProject() {
+  yield takeLatest(DELETE_PROJECT, deleteProjectSaga);
 }
