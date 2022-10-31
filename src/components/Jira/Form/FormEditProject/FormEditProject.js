@@ -35,7 +35,7 @@ function FormEditProject(props) {
 
     dispatch({
       type: SET_EDIT_SUBMIT_PROJECT,
-      submitForm:handleSubmit,
+      submitForm: handleSubmit,
     });
   }, []);
 
@@ -87,9 +87,10 @@ function FormEditProject(props) {
               <p className="fw-bold">Description</p>
               <Editor
                 apiKey={APIKEYTINY}
-                name="descriptionEditor"
+                name="description"
                 onInit={(evt, editor) => (editorRef.current = editor)}
-                initialValue={values.description}
+                initialValue=""
+                value={values.description}
                 init={{
                   height: 250,
                   menubar: false,
@@ -147,7 +148,7 @@ const EditProjectWithFormik = withFormik({
   validationSchema: Yup.object().shape({}),
 
   handleSubmit: (values, { props, setSubmitting, event }) => {
-   props.dispatch(updateJiraProjectAction(values));
+    props.dispatch(updateJiraProjectAction(values));
   },
 })(FormEditProject);
 

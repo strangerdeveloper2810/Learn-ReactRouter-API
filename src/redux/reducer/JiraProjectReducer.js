@@ -2,10 +2,10 @@ import {EDIT_PROJECT} from "../constants/JiraReportBugConstants/JiraProjectConst
 const initialState = {
   projectEdit: {
     id: 0,
-    projectName: "abc",
+    projectName: "",
     creator: 0,
-    description: "string",
-    categoryId: "2",
+    description: "",
+    categoryId: "",
   },
 };
 
