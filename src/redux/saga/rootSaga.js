@@ -19,6 +19,7 @@ export function * rootSaga() {
         projectJira.actionGetCategoryProject(),
         projectJira.actionCreateProject(),
         projectJira.actionGetAllProject(),
-        projectJira.actionUpdateProject()
+        projectJira.actionUpdateProject(),
+        projectJira.actionDeleteProject(),
     ]);
 }

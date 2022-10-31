@@ -89,7 +89,7 @@ function FormEditProject(props) {
                 apiKey={APIKEYTINY}
                 name="description"
                 onInit={(evt, editor) => (editorRef.current = editor)}
-                initialValue=""
+                
                 value={values.description}
                 init={{
                   height: 250,
