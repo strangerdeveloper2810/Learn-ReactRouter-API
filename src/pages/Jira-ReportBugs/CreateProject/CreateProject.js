@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { connect, useSelector, useDispatch } from "react-redux";
 import { CATEGORY_PROJECT_API,CREATE_PROJECT_API } from "../../../redux/constants/JiraReportBugConstants/JiraCategoryProjectConstants";
 function CreateProject(props) {
-  const { errors, handleChange, handleSubmit, setFieldValue } = props;
+  const { handleChange, handleSubmit, setFieldValue } = props;
 
   const editorRef = useRef(null);
 

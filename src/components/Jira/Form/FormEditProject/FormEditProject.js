@@ -6,6 +6,7 @@ import { withFormik } from "formik";
 import * as Yup from "yup";
 import { SET_EDIT_SUBMIT_PROJECT } from "../../../../redux/constants/JiraModalConstants/JiraModalConstants";
 import { CATEGORY_PROJECT_API } from "../../../../redux/constants/JiraReportBugConstants/JiraCategoryProjectConstants";
+import { updateJiraProjectAction } from "../../../../redux/actions/JiraProjectActions";
 function FormEditProject(props) {
   const { values, handleChange, handleSubmit, setFieldValue } = props;
   const dispatch = useDispatch();
@@ -88,7 +89,7 @@ function FormEditProject(props) {
                 apiKey={APIKEYTINY}
                 name="descriptionEditor"
                 onInit={(evt, editor) => (editorRef.current = editor)}
-                initialValue={values.categoryId}
+                initialValue={values.description}
                 init={{
                   height: 250,
                   menubar: false,
@@ -146,7 +147,7 @@ const EditProjectWithFormik = withFormik({
   validationSchema: Yup.object().shape({}),
 
   handleSubmit: (values, { props, setSubmitting, event }) => {
-    console.log("values", values);
+   props.dispatch(updateJiraProjectAction(values));
   },
 })(FormEditProject);
 

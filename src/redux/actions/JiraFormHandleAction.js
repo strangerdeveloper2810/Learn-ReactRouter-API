@@ -6,3 +6,4 @@ export const openFormEditProjectAction = () =>({
     type: OPEN_FORM_EDIT_PROJECT,
     Component: <FormEditProject/>
 });
+
