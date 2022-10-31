@@ -19,6 +19,7 @@ import {
 } from "../../constants/LoadingConstants/LoadingConstants";
 import { HIDE_MODAL } from "../../constants/JiraModalConstants/JiraModalConstants";
 import { JiraProjectApi } from "../../../services/JiraProjectServices";
+import {JiraServices} from "../../../services/JiraReportBugServices";
 
 import { STATUS__CODE } from "../../../util/constants/systemSetting";
 import history from "../../../util/history";
@@ -112,7 +113,7 @@ function* updateProjectSaga(action) {
 
     yield delay(1500);
     let { data, status } = yield call(() => {
-      return JiraProjectApi.updateProjectJira(projectUpdate);
+      return JiraServices.updateProjectJira(projectUpdate);
     });
 
     if (status === STATUS__CODE.SUCCESS) {
