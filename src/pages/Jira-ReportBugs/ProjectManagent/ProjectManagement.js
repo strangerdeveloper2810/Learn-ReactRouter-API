@@ -4,8 +4,8 @@ import parse from "html-react-parser";
 import { DeleteFilled, EditFilled } from "@ant-design/icons/lib/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { GET_ALL_PROJECT_API } from "../../../redux/constants/JiraReportBugConstants/ProjectListJiraConstants";
-import { OPEN_FORM_EDIT_PROJECT } from "../../../redux/constants/JiraModalConstants/JiraModalConstants";
 import { openFormEditProjectAction } from "../../../redux/actions/JiraFormHandleAction";
+import { editJiraProjectAction } from "../../../redux/actions/JiraProjectActions";
 export default function ProjectManagement(props) {
   const projectList = useSelector(
     (state) => state.ProjectListReducer.projectList
@@ -106,6 +106,7 @@ export default function ProjectManagement(props) {
               className="btn btn-info me-2 "
               onClick={() => {
                 dispatch(openFormEditProjectAction());
+                dispatch(editJiraProjectAction(record));
               }}
             >
               <EditFilled style={{ fontSize: 17 }} />

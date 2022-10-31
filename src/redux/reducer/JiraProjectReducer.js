@@ -1,16 +1,18 @@
+import {EDIT_PROJECT} from "../constants/JiraReportBugConstants/JiraProjectConstants"
 const initialState = {
   projectEdit: {
     id: 0,
-    projectName: "abc",
+    projectName: "",
     creator: 0,
-    description: "string",
-    categoryId: "2",
+    description: "",
+    categoryId: "",
   },
 };
 
 const JiraProjectReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "":
+    case EDIT_PROJECT:
+      state.projectEdit = action.projectEditModel;
       return { ...state };
 
     default:

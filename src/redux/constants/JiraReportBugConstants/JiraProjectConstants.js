@@ -1,0 +1,6 @@
+export const EDIT_PROJECT = "EDIT_PROJECT";
+
+export const UPDATE_PROJECT = "UPDATE_PROJECT";
+
+
+export const UPDATE_PROJECT_API = "UPDATE_PROJECT_API"
