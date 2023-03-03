@@ -1,15 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+
+// Bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";
+
+// Ant Design Reset CSS
+import "antd/dist/reset.css";
+
+// Route for App
+import { BrowserRouter } from "react-router-dom";
+
+// setting reduxtoolkit for App
+import { Provider } from "react-redux";
+import store from "Redux/store";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
