@@ -24,6 +24,7 @@ function FormEditProject(props) {
   };
 
   const editorRef = useRef(null);
+  
   const handleEditorChange = (content, editor) => {
     setFieldValue("description", content);
   };

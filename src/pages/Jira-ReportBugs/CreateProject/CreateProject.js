@@ -4,10 +4,13 @@ import { APIKEYTINY } from "../../../util/constants/systemSetting";
 import { withFormik } from "formik";
 import * as Yup from "yup";
 import { connect, useSelector, useDispatch } from "react-redux";
-import { CATEGORY_PROJECT_API,CREATE_PROJECT_API } from "../../../redux/constants/JiraReportBugConstants/JiraCategoryProjectConstants";
+import {
+  CATEGORY_PROJECT_API,
+  CREATE_PROJECT_API,
+} from "../../../redux/constants/JiraReportBugConstants/JiraCategoryProjectConstants";
 function CreateProject(props) {
   const { handleChange, handleSubmit, setFieldValue } = props;
-
+  console.log(handleChange);
   const editorRef = useRef(null);
 
   const handleEditorChange = (content, editor) => {
@@ -126,7 +129,7 @@ const CreateProjectJiraReportBugWithFormik = withFormik({
   handleSubmit: (values, { props, setSubmitting }) => {
     props.dispatch({
       type: CREATE_PROJECT_API,
-      newProject: values
+      newProject: values,
     });
   },
 })(CreateProject);
