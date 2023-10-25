@@ -18,8 +18,8 @@ import {
   HIDE_LOADING,
 } from "../../constants/LoadingConstants/LoadingConstants";
 import { HIDE_MODAL } from "../../constants/JiraModalConstants/JiraModalConstants";
-import { JiraProjectApi } from "../../../services/JiraProjectServices";
-import {JiraServices} from "../../../services/JiraReportBugServices";
+import { JiraProjectApi } from "../../../services/JiraServices/JiraProjectServices";
+import { JiraServices } from "../../../services/JiraServices/JiraReportBugServices";
 
 import { STATUS__CODE } from "../../../util/constants/systemSetting";
 import history from "../../../util/history";

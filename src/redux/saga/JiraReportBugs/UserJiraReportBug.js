@@ -1,5 +1,5 @@
 import { call, delay, put, takeLatest } from "redux-saga/effects";
-import {userJiraApi} from "../../../services/UserJiraServices";
+import { userJiraApi } from "../../../services/JiraServices/UserJiraServices";
 import {
   STATUS__CODE,
   TOKEN,
@@ -70,7 +70,7 @@ function* signupSaga(action) {
     });
     yield delay(1500);
     let { status } = yield call(() => {
-      return userJiraApi.signupJira(userRegister)
+      return userJiraApi.signupJira(userRegister);
     });
 
     if (status === STATUS__CODE.SUCCESS) {
