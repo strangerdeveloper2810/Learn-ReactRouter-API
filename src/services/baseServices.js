@@ -1,5 +1,9 @@
 import axios from "axios";
-import { DOMAINJIRA, TOKEN } from "../util/constants/systemSetting";
+import {
+  DOMAINJIRA,
+  TOKENCYBERSOFT,
+  TOKEN,
+} from "../util/constants/systemSetting";
 export class baseServices {
   put = (url, model) => {
     return axios({
@@ -7,6 +11,7 @@ export class baseServices {
       method: "PUT",
       data: model,
       headers: { Authorization: "Bearer " + localStorage.getItem(TOKEN) },
+      TOKENCYBERSOFT: TOKENCYBERSOFT,
     });
   };
 
@@ -16,6 +21,7 @@ export class baseServices {
       method: "POST",
       data: model,
       headers: { Authorization: "Bearer " + localStorage.getItem(TOKEN) },
+      TOKENCYBERSOFT: TOKENCYBERSOFT,
     });
   };
 
@@ -24,6 +30,7 @@ export class baseServices {
       url: `${DOMAINJIRA}/${url}`,
       method: "GET",
       headers: { Authorization: "Bearer " + localStorage.getItem(TOKEN) },
+      TOKENCYBERSOFT: TOKENCYBERSOFT,
     });
   };
 
@@ -32,6 +39,7 @@ export class baseServices {
       url: `${DOMAINJIRA}/${url}`,
       method: "DELETE",
       headers: { Authorization: "Bearer " + localStorage.getItem(TOKEN) },
+      TOKENCYBERSOFT: TOKENCYBERSOFT,
     });
   };
 }
