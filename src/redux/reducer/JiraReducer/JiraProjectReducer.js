@@ -1,4 +1,4 @@
-import { EDIT_PROJECT } from "../../constants/JiraReportBugConstants/JiraProjectConstants";
+import { EDIT_PROJECT } from "../../constants/Jira/JiraReportBugConstants/JiraProjectConstants";
 const initialState = {
   projectEdit: {
     id: 0,

@@ -1,7 +1,7 @@
 import {
   DISPLAY_LOADING,
   HIDE_LOADING,
-} from "../../constants/LoadingConstants/LoadingConstants";
+} from "../../constants/Jira/LoadingConstants/LoadingConstants";
 
 const initialState = {
   isLoading: false,

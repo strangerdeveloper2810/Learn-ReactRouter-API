@@ -1,5 +1,5 @@
 import { USER_LOGIN } from "../../../util/constants/systemSetting";
-import { USER_LOGIN_ACTION } from "../../constants/JiraReportBugConstants/UserJiraReportBugConstants";
+import { USER_LOGIN_ACTION } from "../../constants/Jira/JiraReportBugConstants/UserJiraReportBugConstants";
 let usLogin = {};
 if (localStorage.getItem(USER_LOGIN)) {
   usLogin = JSON.parse(localStorage.getItem(USER_LOGIN));

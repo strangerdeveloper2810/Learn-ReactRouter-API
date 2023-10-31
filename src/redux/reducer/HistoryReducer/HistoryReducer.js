@@ -1,4 +1,4 @@
-import { ADD_HISTORY } from "../../constants/HistoryConstants/HistoryConstants";
+import { ADD_HISTORY } from "../../constants/Jira/HistoryConstants/HistoryConstants";
 
 const historyState = {
   history: {},

@@ -1,4 +1,4 @@
-import { CATEGORY_PROJECT_ACTION } from "../../constants/JiraReportBugConstants/JiraCategoryProjectConstants";
+import { CATEGORY_PROJECT_ACTION } from "../../constants/Jira/JiraReportBugConstants/JiraCategoryProjectConstants";
 const initialState = {
   arrProjectCategory: [],
 };

@@ -3,21 +3,21 @@ import {
   CATEGORY_PROJECT_ACTION,
   CATEGORY_PROJECT_API,
   CREATE_PROJECT_API,
-} from "../../constants/JiraReportBugConstants/JiraCategoryProjectConstants";
+} from "../../constants/Jira/JiraReportBugConstants/JiraCategoryProjectConstants";
 
 import {
   UPDATE_PROJECT,
   DELETE_PROJECT,
-} from "../../constants/JiraReportBugConstants/JiraProjectConstants";
+} from "../../constants/Jira/JiraReportBugConstants/JiraProjectConstants";
 import {
   GET_ALL_PROJECT_API,
   GET_ALL_PROJECT_ACTION,
-} from "../../constants/JiraReportBugConstants/ProjectListJiraConstants";
+} from "../../constants/Jira/JiraReportBugConstants/ProjectListJiraConstants";
 import {
   DISPLAY_LOADING,
   HIDE_LOADING,
-} from "../../constants/LoadingConstants/LoadingConstants";
-import { HIDE_MODAL } from "../../constants/JiraModalConstants/JiraModalConstants";
+} from "../../constants/Jira/LoadingConstants/LoadingConstants";
+import { HIDE_MODAL } from "../../constants/Jira/JiraModalConstants/JiraModalConstants";
 import { JiraProjectApi } from "../../../services/JiraServices/JiraProjectServices";
 import { JiraServices } from "../../../services/JiraServices/JiraReportBugServices";
 

@@ -4,7 +4,7 @@ import {
   HIDE_MODAL,
   OPEN_FORM_EDIT_PROJECT,
   SET_EDIT_SUBMIT_PROJECT,
-} from "../../constants/JiraModalConstants/JiraModalConstants";
+} from "../../constants/Jira/JiraModalConstants/JiraModalConstants";
 const initialState = {
   visible: false,
   ComponentModal: <p>Default content</p>,

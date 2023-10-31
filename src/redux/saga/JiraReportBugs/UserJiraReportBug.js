@@ -9,11 +9,11 @@ import {
   USER_LOGIN_ACTION,
   USER_SIGNIN_API,
   USER_SIGNUP_API,
-} from "../../constants/JiraReportBugConstants/UserJiraReportBugConstants";
+} from "../../constants/Jira/JiraReportBugConstants/UserJiraReportBugConstants";
 import {
   DISPLAY_LOADING,
   HIDE_LOADING,
-} from "../../constants/LoadingConstants/LoadingConstants";
+} from "../../constants/Jira/LoadingConstants/LoadingConstants";
 import history from "../../../util/history";
 import Swal from "sweetalert2";
 

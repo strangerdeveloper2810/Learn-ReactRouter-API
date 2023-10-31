@@ -1,4 +1,4 @@
-import { GET_ALL_PROJECT_ACTION } from "../../constants/JiraReportBugConstants/ProjectListJiraConstants";
+import { GET_ALL_PROJECT_ACTION } from "../../constants/Jira/JiraReportBugConstants/ProjectListJiraConstants";
 const initialState = {
   projectList: [],
 };
