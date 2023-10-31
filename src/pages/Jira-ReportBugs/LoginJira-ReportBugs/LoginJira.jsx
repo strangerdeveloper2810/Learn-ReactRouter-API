@@ -1,12 +1,27 @@
 import React from "react";
 import styled from "./LoginJira.module.css";
-import { withFormik } from "formik";
-import * as Yup from "yup";
-import { connect } from "react-redux";
-import { signinJiraReportBugAction } from "../../../redux/actions/JiraActions/JiraReportBugAction";
+import { useDispatch } from "react-redux";
+import { useFormik } from "formik";
 import { NavLink } from "react-router-dom";
+import { validationSchema } from "./validation/ValidationSchema";
+import { signinJiraReportBugAction } from "../../../redux/actions/JiraActions/JiraReportBugAction";
 const LoginJira = (props) => {
-  const { errors, handleChange, handleSubmit } = props;
+  const dispatch = useDispatch();
+  const handleLogin = React.useCallback(
+    (values) => {
+      const { email, password } = values;
+      dispatch(signinJiraReportBugAction(email, password));
+    },
+    [dispatch]
+  );
+  const formikBag = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: handleLogin,
+  });
   return (
     <div
       className="container d-flex justify-content-center"
@@ -20,7 +35,7 @@ const LoginJira = (props) => {
           Login Jira-Report Bugs
         </h3>
         <div className={styled.screenContent}>
-          <form className={styled.login} onSubmit={handleSubmit}>
+          <form className={styled.login} onSubmit={formikBag.handleSubmit}>
             <div className={styled.loginField}>
               <div className={styled.loginIcon}>
                 <i className="fa-solid fa-user" />
@@ -30,9 +45,11 @@ const LoginJira = (props) => {
                 className={styled.loginInput}
                 placeholder="User name / Email"
                 name="email"
-                onChange={handleChange}
+                value={formikBag.values.email}
+                onBlur={formikBag.handleBlur}
+                onChange={formikBag.handleChange}
               />
-              <p className="text-danger">{errors.email}</p>
+              <p className="text-danger">{formikBag.errors.email}</p>
             </div>
             <div className={styled.loginField}>
               <div className={styled.loginIcon}>
@@ -43,9 +60,11 @@ const LoginJira = (props) => {
                 className={styled.loginInput}
                 placeholder="Password"
                 name="password"
-                onChange={handleChange}
+                value={formikBag.values.password}
+                onBlur={formikBag.handleBlur}
+                onChange={formikBag.handleChange}
               />
-              <p className="text-danger">{errors.password}</p>
+              <p className="text-danger">{formikBag.errors.password}</p>
             </div>
             <button
               className={styled.button}
@@ -91,23 +110,4 @@ const LoginJira = (props) => {
   );
 };
 
-const LoginJiraReportBugsWithFormik = withFormik({
-  mapPropsToValues: () => ({ email: "", password: "" }),
-  validationSchema: Yup.object().shape({
-    email: Yup.string()
-      .required("Email is required!")
-      .email("Email is invalid"),
-    password: Yup.string()
-      .required("Password is required!")
-      .min(6, "Password must have min 6 characters")
-      .max(32, "Password have max 32 characters"),
-  }),
-  handleSubmit: (values, { props, setSubmitting }) => {
-    const { email, password } = values;
-    props.dispatch(signinJiraReportBugAction(email, password));
-  },
-
-  displayName: "Login",
-})(LoginJira);
-
-export default connect()(LoginJiraReportBugsWithFormik);
+export default React.memo(LoginJira);

@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch, useHistory } from "react-router-dom";
 import LoadingComponent from "./components/GlobalSetting/LoadingGlobalComponents/index";
 import JiraModal from "./HOC/JiraModal/index";
@@ -22,12 +22,12 @@ function App() {
       history: history,
     });
   }, [dispatch, history]);
+
   return (
     <Fragment>
       <LoadingComponent />
       <JiraModal />
       <Switch>
-        {/* For Project Jira */}
         <UserLoginTemplate exact path="/" Component={LoginJira} />
         <UserLoginTemplate exact path="/login" Component={LoginJira} />
         <UserLoginTemplate exact path="/register" Component={RegisterJira} />

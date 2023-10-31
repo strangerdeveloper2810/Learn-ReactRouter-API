@@ -1,15 +1,27 @@
 import React from "react";
 import styled from "./RegisterJira.module.css";
-import { withFormik } from "formik";
-import * as Yup from "yup";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { useFormik } from "formik";
 import { signupJiraReportBugAction } from "../../../redux/actions/JiraActions/JiraReportBugAction";
+import { validationSchema } from "./validation/validationSchema";
 const RegisterJira = (props) => {
-  const { errors, handleChange, handleSubmit } = props;
+  const dispatch = useDispatch();
+  const handleRegister = React.useCallback(
+    (values) => {
+      const { email, password, name, phoneNumber } = values;
+      dispatch(signupJiraReportBugAction(email, password, name, phoneNumber));
+    },
+    [dispatch]
+  );
+  const formikBag = useFormik({
+    initialValues: {},
+    validationSchema: validationSchema,
+    onSubmit: handleRegister,
+  });
   return (
     <div className={styled.wrapper}>
-      <form className={styled.formRight} onSubmit={handleSubmit}>
+      <form className={styled.formRight} onSubmit={formikBag.handleSubmit}>
         <h2 className="text-uppercase">Create Account </h2>
         <div className="row">
           <div className="col-sm-6 mb-3">
@@ -19,9 +31,11 @@ const RegisterJira = (props) => {
               name="name"
               className={styled.inputField}
               required
-              onChange={handleChange}
+              value={formikBag.values.name}
+              onBlur={formikBag.handleBlur}
+              onChange={formikBag.handleChange}
             />
-            <p className="text-danger">{errors.name}</p>
+            <p className="text-danger">{formikBag.errors.name}</p>
           </div>
 
           <div className="col-sm-6 mb-3">
@@ -31,9 +45,11 @@ const RegisterJira = (props) => {
               name="phoneNumber"
               className={styled.inputField}
               required
-              onChange={handleChange}
+              value={formikBag.values.phoneNumber}
+              onBlur={formikBag.handleBlur}
+              onChange={formikBag.handleChange}
             />
-            <p className="text-danger">{errors.phoneNumber}</p>
+            <p className="text-danger">{formikBag.errors.phoneNumber}</p>
           </div>
         </div>
         <div className="mb-3">
@@ -43,9 +59,11 @@ const RegisterJira = (props) => {
             className={styled.inputField}
             name="email"
             required
-            onChange={handleChange}
+            value={formikBag.values.email}
+            onBlur={formikBag.handleBlur}
+            onChange={formikBag.handleChange}
           />
-          <p className="text-danger">{errors.email}</p>
+          <p className="text-danger">{formikBag.errors.email}</p>
         </div>
 
         <div className="row">
@@ -57,9 +75,11 @@ const RegisterJira = (props) => {
               id="pwd"
               className={styled.inputField}
               required
-              onChange={handleChange}
+              value={formikBag.values.password}
+              onBlur={formikBag.handleBlur}
+              onChange={formikBag.handleChange}
             />
-            <p className="text-danger">{errors.password}</p>
+            <p className="text-danger">{formikBag.errors.password}</p>
           </div>
         </div>
         <div className="mb-3">
@@ -84,36 +104,4 @@ const RegisterJira = (props) => {
     </div>
   );
 };
-
-const RegisterJiraReportBugsWithFormik = withFormik({
-  mapPropsToValues: () => ({
-    email: "",
-    password: "",
-    name: "",
-    phoneNumber: "",
-  }),
-
-  validationSchema: Yup.object().shape({
-    email: Yup.string()
-      .required("Email is required!")
-      .email("Email is invalid"),
-
-    password: Yup.string()
-      .required("Password is required!")
-      .min(6, "Password must have min 6 characters")
-      .max(32, "Password have max 32 characters"),
-    name: Yup.string().required("Name is required!"),
-    phoneNumber: Yup.string()
-      .required("Phone Number  is required!")
-      .max(10, "Phone Number have max 10 characters"),
-  }),
-
-  handleSubmit: (values, { props, setSubmitting }) => {
-    const { email, password, name, phoneNumber } = values;
-    props.dispatch(
-      signupJiraReportBugAction(email, password, name, phoneNumber)
-    );
-  },
-})(RegisterJira);
-
-export default connect()(RegisterJiraReportBugsWithFormik);
+export default React.memo(RegisterJira);
